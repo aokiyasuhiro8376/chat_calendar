@@ -2,6 +2,7 @@
 <h2><%= @user.name %></h2>
 <h2><%= @user.email %></h2>
 
+1
 <% if user_signed_in? %>
   <% unless @user.id == current_user.id %>
     <!-- 既にroomが存在していれば既存のroomへ -->
@@ -18,6 +19,20 @@
         <% end %>
         <button type="submit" id="dm_submit"><i class="fas fa-envelope"></i></button>
       <% end %>
+    <% end %>
+  <% end %>
+<% end %>
+
+2
+<% unless @user.id == current_user.id %>
+  <% if @isRoom == true %>
+    <%= link_to "チャットへGo!", room_path(@roomId) %>
+  <% else %>
+    <%= form_for @room do |f| %>
+      <%= fields_for @entry do |e| %>
+        <%= e.hidden_field :user_id, :value=> @user.id %>
+      <% end %>
+      <%= f.submit "チャットを始める" %>
     <% end %>
   <% end %>
 <% end %>
