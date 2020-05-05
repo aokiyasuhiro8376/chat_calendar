@@ -1,3 +1,6 @@
+<h1><%= @room.name %></h1>
+
+<h4>参加者</h4>
 <% @entries.each do |e| %>
   <!-- eachで回したentryユーザーがログインユーザーであれば、@classに"current_user"の文字列を代入する。ログインユーザーであれば、空白を代入する -->
   <% current_user == e.user ? @class = "current_user" : @class = ""  %>

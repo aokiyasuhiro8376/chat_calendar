@@ -1,3 +1,7 @@
+<h3>ユーザー詳細</h3>
+<h2><%= @user.name %></h2>
+<h2><%= @user.email %></h2>
+
 <% if user_signed_in? %>
   <% unless @user.id == current_user.id %>
     <!-- 既にroomが存在していれば既存のroomへ -->
