@@ -15,11 +15,20 @@
 <div id="direct_messages" data-room_id="<%= @room.id %>">
   <%= render @direct_messages %>
 </div>
-<!-- メッセージフォーム -->
+<!-- メッセージフォーム 1-->
 <form>
   <label style="color: white;" id="target">新しいメッセージを作成</label><br>
   <input type="text" id="chat-input" data-behavior="room_speaker" class="form-control">
 </form>
+<!-- メッセージフォーム 2-->
+<%= form_for @message do |f| %>
+  <%= f.text_field :content, :placeholder => "メッセージを入力して下さい" , :size => 70 %>
+  <%= f.hidden_field :room_id, :value => @room.id %>
+  <br>
+  <%= f.submit "投稿する" %>
+<% end %>
+
+<%= link_to "ユーザー一覧に戻る", users_path %>
 
 <script>
   //トークルーム遷移時に入力フォーム記載場所にスクロールする(最新トークは下にあるため)

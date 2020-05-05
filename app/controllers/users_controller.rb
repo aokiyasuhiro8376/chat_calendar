@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, :only => [:index, :show]
 
   def index
     @users = User.all
@@ -7,6 +7,9 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
+    #カレンダー
+    @events = Event.where(user_id: @user.id)
+    @event = Event.new
     #チャット
     if user_signed_in?
       #Entry内のuser_idがcurrent_userと同じEntry
