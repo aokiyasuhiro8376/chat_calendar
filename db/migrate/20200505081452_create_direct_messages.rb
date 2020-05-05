@@ -2,8 +2,8 @@ class CreateDirectMessages < ActiveRecord::Migration[5.2]
   def change
     create_table :direct_messages do |t|
       t.string :content
-      t.integer :user_id
-      t.integer :room_id
+      t.references :user, index: true
+      t.references :room, index: true
 
       t.timestamps
     end
