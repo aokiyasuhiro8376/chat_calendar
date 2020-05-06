@@ -16,17 +16,40 @@
   <%= render @direct_messages %>
 </div>
 <!-- メッセージフォーム 1-->
-<%# <form> %>
-  <%# <label style="color: white;" id="target">新しいメッセージを作成</label><br> %>
-  <%# <input type="text" id="chat-input" data-behavior="room_speaker" class="form-control"> %>
-<%# </form> %>
+<form>
+  <label style="color: white;" id="target">新しいメッセージを作成</label><br>
+  <input type="text" id="chat-input" data-behavior="room_speaker" class="form-control">
+</form>
 <!-- メッセージフォーム 2-->
-<%= form_for @direct_messages do |f| %>
-  <%= f.text_field :content, :placeholder => "メッセージを入力して下さい" , :size => 70 %>
-  <%= f.hidden_field :room_id, :value => @room.id %>
-  <br>
-  <%= f.submit "投稿する" %>
+<%# <%= form_for @direct_messages do |f| %>
+  <%# <%= f.text_field :content, :placeholder => "メッセージを入力して下さい" , :size => 70 %> 
+  <%# <%= f.hidden_field :room_id, :value => @room.id %> 
+  <%# <br> %>
+  <%# <%= f.submit "投稿する" %> 
+<%# <% end %> 
+
+<%= form_with(model: direct_messages) do |form| %>
+  <% if direct_messages.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(direct_messages.errors.count, "error") %> prohibited this chat from being saved:</h2>
+      <ul>
+      <% direct_messages.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :direct_message %>
+    <%= form.text_field :content %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
 <% end %>
+
 
 <%= link_to "ユーザー一覧に戻る", users_path %>
 
