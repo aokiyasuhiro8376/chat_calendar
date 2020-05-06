@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>タイトル:</strong>
+  <%= @event.title %>
+</p>
+
+<p>
+  <strong>説明:</strong>
+  <%= @event.description %>
+</p>
+
+<p>
+  <strong>開始:</strong>
+  <%= @event.start_date %>
+</p>
+
+<p>
+  <strong>終了:</strong>
+  <%= @event.end_date %>
+</p>
+
+<%= link_to '変更', edit_event_path(@event) %> |
+<%= link_to '戻る', events_path %>

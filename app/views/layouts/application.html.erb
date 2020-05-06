@@ -1,15 +1,37 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset='utf-8' />
     <title>ChatCalendar</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/core/main.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/daygrid/main.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> 
+
+    
+    <%# FullCalendar %>
+    <link href='fullcalendar/core/main.css' rel='stylesheet' />
+    <link href='fullcalendar/daygrid/main.css' rel='stylesheet' />
+
+    <script src='fullcalendar/core/main.js'></script>
+    <script src='fullcalendar/daygrid/main.js'></script>
+
+    <script>
+
+      document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+          plugins: [ 'dayGrid' ]
+        });
+
+        calendar.render();
+      });
+
+    </script>
   </head>
 
   <body>
@@ -22,7 +44,16 @@
       <%= link_to "ログイン", new_user_session_path %>
     <% end %>
 
+    <div id='calendar'></div>
+
+    <%# <!--jQueryの読み込みの後に、以下のコードを追加 -->
+    <script>
+      $(function() {
+        alert("jQueryが正常に動作しています！");
+      });
+    </script> %>
+
     <h1>ChatAppDM</h1>
-      <%= yield %>
+    <%= yield %>
   </body>
 </html>

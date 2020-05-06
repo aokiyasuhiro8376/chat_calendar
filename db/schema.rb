@@ -33,11 +33,11 @@ ActiveRecord::Schema.define(version: 2020_05_05_170211) do
 
   create_table "events", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
-    t.text "body"
-    t.boolean "disp_flg"
-    t.datetime "start_time"
-    t.datetime "end_time"
-    t.string "allDay"
+    t.text "description"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.string "color"
+    t.boolean "allDay"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
