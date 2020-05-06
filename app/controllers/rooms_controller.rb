@@ -34,8 +34,16 @@ class RoomsController < ApplicationController
   end
 
   def destroy
-      room = Room.find(params[:id])
-      room.destroy
-      redirect_to users_rooms_path
+    room = Room.find(params[:id])
+    room.destroy
+    redirect_to users_rooms_path
+  end
+
+  def new
+    # if user_signed_in?
+    @room = Room.new
+    @rooms = current_user.rooms
+    @nonrooms = Room.where(id: Entry.where.not(user_id: current_user.id).pluck(:id))
+    # end
   end
 end

@@ -14,9 +14,3 @@
  *= require_self
  *= require fullcalendar
  */
-
-// reset
-@import './config/reset';
-// gem
-@import 'font-awesome-sprockets';
-@import 'font-awesome'
