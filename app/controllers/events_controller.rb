@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # class EventsController < ApplicationController
 #   def create
 #     event = Event.new(event_params)
@@ -25,27 +27,25 @@
 # end
 
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update, :destroy] #パラメータのidからレコードを特定するメソッド
+  before_action :set_event, only: %i[show edit update destroy] # パラメータのidからレコードを特定するメソッド
 
   def index
     @events = Event.all
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml { render :xml => @events }
-      format.json { render :json => @events }
+      format.xml { render xml: @events }
+      format.json { render json: @events }
     end
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @event = Event.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @event = Event.new(event_params)
@@ -82,6 +82,7 @@ class EventsController < ApplicationController
   end
 
   private
+
   def set_event
     @event = Event.find(params[:id])
   end

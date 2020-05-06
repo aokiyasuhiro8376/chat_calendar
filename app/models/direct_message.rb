@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class DirectMessage < ApplicationRecord
   belongs_to :user
   belongs_to :room
-  #ブロードキャスト
+  # ブロードキャスト
   after_create_commit { DirectMessageBroadcastJob.perform_later self }
 end

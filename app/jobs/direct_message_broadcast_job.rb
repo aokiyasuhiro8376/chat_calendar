@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class DirectMessageBroadcastJob < ApplicationJob
   queue_as :default
 
@@ -9,6 +11,7 @@ class DirectMessageBroadcastJob < ApplicationJob
   end
 
   private
+
   def render_direct_message(direct_message)
     ApplicationController.renderer.render partial: 'direct_messages/direct_message', locals: { direct_message: direct_message }
   end

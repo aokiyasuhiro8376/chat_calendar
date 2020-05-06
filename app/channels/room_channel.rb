@@ -1,10 +1,13 @@
+# frozen_string_literal: true
+
 class RoomChannel < ApplicationCable::Channel
-  #接続されたとき
+  # 接続されたとき
   def subscribed
     # stream_from "some_channel"
     stream_from "room_channel_#{params['room']}"
   end
-  #切断されたとき
+
+  # 切断されたとき
   def unsubscribed
     # Any cleanup needed when channel is unsubscribed
   end

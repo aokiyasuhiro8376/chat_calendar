@@ -16,12 +16,12 @@
   <%= render @direct_messages %>
 </div>
 <!-- メッセージフォーム 1-->
-<form>
-  <label style="color: white;" id="target">新しいメッセージを作成</label><br>
-  <input type="text" id="chat-input" data-behavior="room_speaker" class="form-control">
-</form>
+<%# <form> %>
+  <%# <label style="color: white;" id="target">新しいメッセージを作成</label><br> %>
+  <%# <input type="text" id="chat-input" data-behavior="room_speaker" class="form-control"> %>
+<%# </form> %>
 <!-- メッセージフォーム 2-->
-<%= form_for @message do |f| %>
+<%= form_for @direct_messages do |f| %>
   <%= f.text_field :content, :placeholder => "メッセージを入力して下さい" , :size => 70 %>
   <%= f.hidden_field :room_id, :value => @room.id %>
   <br>

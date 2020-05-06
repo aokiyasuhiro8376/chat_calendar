@@ -372,6 +372,7 @@ DEPENDENCIES
   refile-mini_magick
   rspec-rails
   rubocop
+  rubocop-rails
   rubocop-rails_config
   sass-rails (~> 5.0)
   selenium-webdriver

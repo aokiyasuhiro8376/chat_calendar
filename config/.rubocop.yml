@@ -1,0 +1,39 @@
+inherit_gem:
+  rubocop-rails_config:
+    - config/rails.yml
+
+# 文字列のobject_idを固定するかどうかの設定を無視   
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+# 式展開をする場合は""、ただの文字列は''を使用する
+Style/StringLiterals:
+  EnforcedStyle: single_quotes
+  SupportedStyles:
+    - single_quotes
+    - double_quotes
+
+# # privateメソッド等使用時に一段インデントを深くする
+# Layout/IndentationConsistency:
+#   Enabled: false
+#   EnforcedStyle: indented_internal_methods
+
+# privateメソッド等使用時に一段インデントを深くする
+Layout/IndentationWidth:
+  Enabled: false
+
+
+# ハッシュの書き方。デフォルトは{ hoge }を推奨するため、{hoge}に変更
+Layout/SpaceInsideHashLiteralBraces:
+  # EnforcedStyle: no_space
+  Enabled: false
+
+Layout/SpaceInsideBlockBraces:
+  Enabled: false
+
+
+AllCops:
+  # Exclude:
+  #   - 'db/schema.rb'
+  # 本アプリでは、ruby2.5を使用しているため
+  TargetRubyVersion: 2.5

@@ -13,4 +13,13 @@
  *= require_tree .
  *= require_self
  *= require fullcalendar
+ *= repuire font-awesome
  */
+
+// reset
+@import "./config/reset";
+
+// gem
+@import "font-awesome-sprockets";
+@import "font-awesome";
+@import "fullcalendar";
