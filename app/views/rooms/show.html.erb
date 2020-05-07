@@ -1,5 +1,18 @@
 <h1><%= @room.name %></h1>
 
+<%# 5/8 %>
+<h1>Chat room</h1>
+
+<div id="direct_messages">
+  <%= render @direct_messages %>
+</div>
+
+<form>
+  <label>Say something:</label><br>
+  <input type="text" data-behavior="room_speaker">
+</form>
+
+
 <h4>参加者</h4>
 <% @entries.each do |e| %>
   <!-- eachで回したentryユーザーがログインユーザーであれば、@classに"current_user"の文字列を代入する。ログインユーザーであれば、空白を代入する -->
