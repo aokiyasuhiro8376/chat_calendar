@@ -6,7 +6,7 @@
 
 
 <p class="<%= direct_message.id %>" style= "color: white; margin-top: 0;">
-  <%= attachment_image_tag direct_message.user, :profile_image, fallback: "no_image.jpg", class:"profile-img-circle", size: "40x40" %>
+  <%# <%= attachment_image_tag direct_message.user, :profile_image, fallback: "no_image.jpg", class:"profile-img-circle", size: "40x40" %> %>
   <%= direct_message.user.name %>
 </p>
 <p class="<%= direct_message.id %>">
@@ -17,17 +17,17 @@
 </p><br>
 
 <!-- メッセージの表示位置を指定する -->
-<script>
+<%# <script>
   //メッセージのユーザーidを取ってくる
   var direct_message = <%= direct_message.user.id %>;
-  //id="current_user"の内容を取得
+  <%# //id="current_user"の内容を取得
   var dm_user = document.getElementById('current_user');
   //dm_userのdata-idを取得する
   var current_user = dm_user.getAttribute('data-id')
   //dm_userがログインユーザーであれば右に表示する
   if(direct_message == current_user){
     $('p.' + <%= direct_message.id %>).css('text-align', 'right');
-  }else{
+  <%# }else{
     $('p.' + <%= direct_message.id %>).css('text-align', 'left');
   }
-</script>
+<%# </script> %> %> %> %>

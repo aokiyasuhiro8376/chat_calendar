@@ -9,7 +9,7 @@
 
 <form>
   <label>Say something:</label><br>
-  <input type="text" data-behavior="room_speaker">
+  <input type="string" data-behavior="room_speaker">
 </form>
 
 
@@ -31,7 +31,7 @@
 <!-- メッセージフォーム 1-->
 <form>
   <label style="color: white;" id="target">新しいメッセージを作成</label><br>
-  <input type="text" id="chat-input" data-behavior="room_speaker" class="form-control">
+  <input type="string" id="chat-input" data-behavior="room_speaker" class="form-control">
 </form>
 <!-- メッセージフォーム 2-->
 <%# <%= form_for @direct_messages do |f| %>
@@ -66,7 +66,7 @@
 
 <%= link_to "ユーザー一覧に戻る", users_path %>
 
-<script>
+<%# <script>
   //トークルーム遷移時に入力フォーム記載場所にスクロールする(最新トークは下にあるため)
   var element = document.getElementById('target'); // 移動させたい位置の要素を取得
   var rect = element.getBoundingClientRect();
@@ -74,4 +74,4 @@
   setTimeout( function() {
     scrollTo(0, position);}
     , 1000);
-</script>
+</script> %>
