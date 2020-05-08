@@ -33,7 +33,8 @@ class RoomsController < ApplicationController
   # end
 
   def create
-    @room = Room.create(name: 'DM')
+    @user = User.find(params[:name])
+    @room = Room.create(name: @user.name)
     # entryにログインユーザーを作成
     @entry1 = Entry.create(room_id: @room.id, user_id: current_user.id)
     # entryにparamsユーザーを作成
@@ -47,11 +48,11 @@ class RoomsController < ApplicationController
     redirect_to users_rooms_path
   end
 
-  def new
-    # if user_signed_in?
-    @room = Room.new
-    @rooms = current_user.rooms
-    @nonrooms = Room.where(id: Entry.where.not(user_id: current_user.id).pluck(:id))
-    # end
-  end
+  # def new
+  #   # if user_signed_in?
+  #   @room = Room.new
+  #   @rooms = current_user.rooms
+  #   @nonrooms = Room.where(id: Entry.where.not(user_id: current_user.id).pluck(:id))
+  #   # end
+  # end
 end

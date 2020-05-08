@@ -82,6 +82,7 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'devise'
 # jQuery
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 # refile サムネイル
 gem 'refile', require: 'refile/rails', github: 'manfe/refile'
 gem 'refile-mini_magick'

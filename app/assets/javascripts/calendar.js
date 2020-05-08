@@ -1,3 +1,12 @@
+//= require activestorage
+//= require turbolinks
+//= require jquery
+//= require jquery_ujs
+//= require moment
+//= require fullcalendar
+//= require rails-ujs
+//= require_tree .
+
 //設定例
 $(document).ready(function() {
 

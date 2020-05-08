@@ -9,4 +9,6 @@ class User < ApplicationRecord
   has_many :direct_messages
   has_many :rooms, through: :entrise
   has_many :events
+  # refile使用
+  attachment :image
 end

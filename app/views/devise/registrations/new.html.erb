@@ -11,7 +11,10 @@
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+
+  <div class="field">
+    <%= f.label :image %><br />
+    <%= f.attachment_field :image_id %>
 
   <div class="field">
     <%= f.label :password %>

@@ -12,16 +12,6 @@
 #     @perform 'speak'
 
 
-
-# 5/8
-$(document).on 'keypress', '[data-behavior~=room_speaker]', (event) ->
-  if event.keyCode is 13 # return = send
-    App.room.speak event.target.value
-    event.target.value = ''
-    event.preventDefault()
-
-
-
 document.addEventListener 'turbolinks:load', ->
   if App.room
     App.cable.subscriptions.remove App.room
@@ -50,11 +40,11 @@ document.addEventListener 'turbolinks:load', ->
 
 
 
-  $('#chat-input').on 'keypress', (event) ->
-    #return キーのキーコードが13
-    if event.keyCode is 13
-      #speakメソッド,event.target.valueを引数に.
-      App.room.speak event.target.value
-      event.target.value = ''
-      event.preventDefault()
+  # $('#chat-input').on 'keypress', (event) ->
+  #   #return キーのキーコードが13
+  #   if event.keyCode is 13
+  #     #speakメソッド,event.target.valueを引数に.
+  #     App.room.speak event.target.value
+  #     event.target.value = ''
+  #     event.preventDefault()
       

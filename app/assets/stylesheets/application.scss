@@ -19,6 +19,14 @@
 // reset
 @import "./config/reset";
 
+
+// 各種scss
+@import "direct_messages";
+@import "events";
+@import "header";
+@import "rooms";
+
+
 // gem
 @import "font-awesome-sprockets";
 @import "font-awesome";

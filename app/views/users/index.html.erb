@@ -1,4 +1,7 @@
+<%= render './shared/header' %>
+
 <h3>ユーザ一覧</h3>
+
 <% @users.each do |user| %>
   <%= link_to "ユーザ名:#{user.name}", user_path(user.id) %>
 <% end %>
