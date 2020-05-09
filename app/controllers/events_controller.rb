@@ -27,6 +27,7 @@
 # end
 
 class EventsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_event, only: %i[show edit update destroy] # パラメータのidからレコードを特定するメソッド
 
   def index

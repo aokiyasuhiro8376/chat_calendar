@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_08_164951) do
+ActiveRecord::Schema.define(version: 2020_05_09_075423) do
 
   create_table "direct_messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "content"
@@ -41,6 +41,8 @@ ActiveRecord::Schema.define(version: 2020_05_08_164951) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "room_id"
+    t.index ["room_id"], name: "index_events_on_room_id"
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
@@ -65,5 +67,6 @@ ActiveRecord::Schema.define(version: 2020_05_08_164951) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "events", "rooms"
   add_foreign_key "events", "users"
 end

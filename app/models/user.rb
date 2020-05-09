@@ -7,7 +7,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :entries
   has_many :direct_messages
-  has_many :rooms, through: :entrise
+  has_many :rooms, through: :entries
   has_many :events
   # refile使用
   attachment :image

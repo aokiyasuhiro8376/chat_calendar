@@ -2,6 +2,9 @@
 
 class RoomsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_room, except: [:create]
+  before_action :move_to_index, except: [:index]
+
 
   def index
     @user = current_user
@@ -16,8 +19,6 @@ class RoomsController < ApplicationController
   end
 
   def show
-    # @direct_messages = DirectMessage.all
-    @room = Room.find(params[:id])
     # ルームが作成されているかどうか
     if Entry.where(user_id: current_user.id, room_id: @room.id).present?
       @direct_messages = @room.direct_messages
@@ -27,14 +28,9 @@ class RoomsController < ApplicationController
     end
   end
 
-  # # 5/8
-  # def show
-  #   @direct_messages = DirectMessage.all
-  # end
-
   def create
-    @user = User.find(params[:name])
-    @room = Room.create(name: @user.name)
+    # @user = User.find_by(params[:name])
+    @room = Room.create(name: "DM")
     # entryにログインユーザーを作成
     @entry1 = Entry.create(room_id: @room.id, user_id: current_user.id)
     # entryにparamsユーザーを作成
@@ -43,16 +39,19 @@ class RoomsController < ApplicationController
   end
 
   def destroy
-    room = Room.find(params[:id])
-    room.destroy
+    @room.destroy
     redirect_to users_rooms_path
   end
 
-  # def new
-  #   # if user_signed_in?
-  #   @room = Room.new
-  #   @rooms = current_user.rooms
-  #   @nonrooms = Room.where(id: Entry.where.not(user_id: current_user.id).pluck(:id))
-  #   # end
-  # end
+
+  private
+  def set_room
+    @room = Room.find(params[:id])
+  end
+
+  def move_to_index
+    redirect_to action: :index unless user_signed_in?
+  end
+
+
 end
