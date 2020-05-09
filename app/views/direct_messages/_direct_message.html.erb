@@ -2,13 +2,13 @@
   <p><%= direct_message.content %></p>
 </div>
 
-<p class="<%= direct_message.id %>">
-  <%= attachment_image_tag direct_message.user, :image_id, fallback: "no_image.jpeg", class: "rounded-circle", fallback: "no_image.jpeg", size: "30x30" %>
-  <%= direct_message.user.name %>
-</p>
-<p class="<%= direct_message.id %>">
-  <span class="balloon1-top">
-    <h6 class="dm_content"><%= direct_message.content %></h6><br>
-    <h6><%= direct_message.created_at.strftime("%Y/%m/%d %H:%M") %></h6>
-  </span>
-</p><br>
+<%# <p class="<%= direct_message.id %>">
+  <%# <%= attachment_image_tag direct_message.user, :image_id, fallback: "no_image.jpeg", class: "rounded-circle", fallback: "no_image.jpeg", size: "30x30" %> %>
+  <%# <%= direct_message.user.name %> %>
+<%# </p> %>
+<%# <p class="<%= direct_message.id %>"> %>
+  <%# <span class="balloon1-top"> %>
+    <%# <h6 class="dm_content"><%= direct_message.content %></h6><br> %>
+    <%# <h6><%= direct_message.created_at.strftime("%Y/%m/%d %H:%M") %></h6> %>
+  <%# </span> %>
+<%# </p><br> %> %>

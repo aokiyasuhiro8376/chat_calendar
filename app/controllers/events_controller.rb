@@ -27,8 +27,10 @@
 # end
 
 class EventsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:index]
   before_action :set_event, only: %i[show edit update destroy] # パラメータのidからレコードを特定するメソッド
+  before_action :set_room, only: %i[show edit update destroy] # パラメータのidからレコードを特定するメソッド
+
 
   def index
     @events = Event.all
@@ -88,7 +90,11 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
   end
 
+  def set_room
+    @room = Room.find(params[:id])
+  end
+
   def event_params
-    params.require(:event).permit(:title, :description, :start_date, :end_date)
+    params.require(:event).permit(:title, :description, :start_date, :end_date).merge(user_id: current_user.id, room_id: @room.id)
   end
 end

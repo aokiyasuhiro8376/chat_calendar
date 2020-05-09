@@ -1,5 +1,5 @@
 <header>
-  <h1>チャットカレンダー</h1>
+  <h1>Chat_Calendar</h1>
   <% if user_signed_in? %>
     <%= current_user.name %><br>
     <%= current_user.email %><br>
@@ -8,5 +8,6 @@
     <%= link_to "新規登録", new_user_registration_path %>
     <%= link_to "ログイン", new_user_session_path %>
   <% end %>
-<div id='calendar'></div>
+</header>
+
 

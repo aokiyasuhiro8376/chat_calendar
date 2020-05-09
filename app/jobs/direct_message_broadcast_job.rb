@@ -3,9 +3,6 @@
 class DirectMessageBroadcastJob < ApplicationJob
   queue_as :default
 
-  # def perform(*args)
-  #   # Do something later
-  # end
   def perform(direct_message)
     ActionCable.server.broadcast "room_channel_#{direct_message.room_id}", direct_message: render_direct_message(direct_message)
   end
