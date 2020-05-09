@@ -2,7 +2,7 @@
 
 class RoomsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_room, except: [:create]
+  before_action :set_room, only: [:create]
   before_action :move_to_index, except: [:index]
 
 
@@ -15,7 +15,8 @@ class RoomsController < ApplicationController
       myRoomIds << entry.room.id
     end
     # @currentEntriesのルーム且つcurrent_userでないEntryを新着順で取ってくる
-    @anotherEntries = Entry.where(room_id: myRoomIds).where.not(user_id: @user.id).order(created_at: :desc)
+    @anotherEntries = Entry.where(room_id: myRoomIds).where.not(user_id: @user.id).order(created_at: :desc).marge(DirectMessage.content)
+    
   end
 
   def show

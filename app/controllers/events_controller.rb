@@ -94,7 +94,12 @@ class EventsController < ApplicationController
     @room = Room.find(params[:id])
   end
 
+  # def set_current_user
+  #   @current_user = User.find(params[:id])
+  # end
+
   def event_params
-    params.require(:event).permit(:title, :description, :start_date, :end_date).merge(user_id: current_user.id, room_id: @room.id)
+    params.require(:event).permit(:title, :description, :start_date, :end_date, :user_id, :room_id)
+    # .merge(user_id: current_user.id, room_id: @room.id)
   end
 end
