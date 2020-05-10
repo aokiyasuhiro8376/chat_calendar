@@ -2,11 +2,12 @@
 
 class RoomsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_room, only: [:create]
+  # before_action :set_room, except: [:create]
   before_action :move_to_index, except: [:index]
 
 
   def index
+    @room = Room.find(params[:id]) #ルーム情報の取得
     @user = current_user
     @currentEntries = current_user.entries
     # @currentEntriesのルームを配列にする
@@ -15,15 +16,19 @@ class RoomsController < ApplicationController
       myRoomIds << entry.room.id
     end
     # @currentEntriesのルーム且つcurrent_userでないEntryを新着順で取ってくる
-    @anotherEntries = Entry.where(room_id: myRoomIds).where.not(user_id: @user.id).order(created_at: :desc).marge(DirectMessage.content)
-    
+    @anotherEntries = Entry.where(room_id: myRoomIds).where.not(user_id: @user.id).order(created_at: :desc)
+    @direct_messages = @room.direct_messages
+
+    # @anotherEntries = DirectMessage.where(room_id: myRoomIds)
   end
 
   def show
     # ルームが作成されているかどうか
     if Entry.where(user_id: current_user.id, room_id: @room.id).present?
-      @direct_messages = @room.direct_messages
       @entries = @room.entries
+      @room = Room.find(params[:id])
+      @direct_message = DirectMessage.new #新規メッセージ投稿
+      @direct_messages = @room.direct_messages #このルームのメッセージを全て取得
     else
       redirect_back(fallback_location: root_path)
     end
@@ -46,9 +51,9 @@ class RoomsController < ApplicationController
 
 
   private
-  def set_room
-    @room = Room.find(params[:id])
-  end
+  # def set_room
+  #   @room = Room.find(params[:id])
+  # end
 
   def move_to_index
     redirect_to action: :index unless user_signed_in?
