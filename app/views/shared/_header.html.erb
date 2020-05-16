@@ -1,13 +1,19 @@
 <header>
-  <h1>Chat_Calendar</h1>
-  <% if user_signed_in? %>
-    <%= current_user.name %><br>
-    <%= current_user.email %><br>
-    <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-  <% else %>
-    <%= link_to "新規登録", new_user_registration_path %>
-    <%= link_to "ログイン", new_user_session_path %>
-  <% end %>
+  <div class='leftbar'>
+    <div class='theme'>Chat_Calendar</div>
+  </div>
+  <div class='rigtbar'>
+    <div class='sign'>
+      <% if user_signed_in? %>
+        <%= current_user.name %><br>
+        <%= current_user.email %><br>
+        <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'sign_btnk' %>
+      <% else %>
+        <%= link_to "新規登録", new_user_registration_path, class: 'sign_btn' %>
+        <%= link_to "ログイン", new_user_session_path, class: 'sign_btn' %>
+      <% end %>
+    </div>
+  </div>
 </header>
 
 
