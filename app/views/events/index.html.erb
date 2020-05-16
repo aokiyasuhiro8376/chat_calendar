@@ -1,11 +1,7 @@
 <%= render "./shared/header"%>
 
 <% if user_signed_in? %>
-  <div class="today">
-    <div class='today-todo'>今日の予定</div>
-      <%= link_to 'イベント追加', new_event_path, class: 'event-link' %>
-    </div>
-  </div>
+  <div class='today-todo'>今日の予定</div>
 
   <table>
     <thead>
@@ -33,6 +29,8 @@
       <% end %>
     </tbody>
   </table>
+
+  <%= link_to 'イベント追加', new_event_path, class: 'event-link' %>
 
   <div id= "calendar" ></div>
 
