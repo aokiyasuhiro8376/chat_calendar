@@ -2,7 +2,7 @@
 
 class RoomsController < ApplicationController
   before_action :authenticate_user!
-  # before_action :set_room, except: [:create]
+  before_action :set_room, except: [:create]
   before_action :move_to_index, except: [:index]
 
 
@@ -26,7 +26,7 @@ class RoomsController < ApplicationController
     # ルームが作成されているかどうか
     if Entry.where(user_id: current_user.id, room_id: @room.id).present?
       @entries = @room.entries
-      @room = Room.find(params[:id])
+      # @room = Room.find(params[:id])
       @direct_message = DirectMessage.new #新規メッセージ投稿
       @direct_messages = @room.direct_messages #このルームのメッセージを全て取得
     else
@@ -40,7 +40,7 @@ class RoomsController < ApplicationController
     # entryにログインユーザーを作成
     @entry1 = Entry.create(room_id: @room.id, user_id: current_user.id)
     # entryにparamsユーザーを作成
-    @entry2 = Entry.create(params.require(:entry).permit(:user_id, :room_id).merge(room_id: @room.id))
+    @entry2 = Entry.create(params.permit(:user_id, :room_id).merge(room_id: @room.id))
     redirect_to room_path(@room.id)
   end
 
@@ -51,9 +51,9 @@ class RoomsController < ApplicationController
 
 
   private
-  # def set_room
-  #   @room = Room.find(params[:id])
-  # end
+  def set_room
+    @room = Room.find(params[:id])
+  end
 
   def move_to_index
     redirect_to action: :index unless user_signed_in?

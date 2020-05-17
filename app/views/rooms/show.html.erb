@@ -18,10 +18,12 @@
 </div>
 <!-- メッセージフォーム -->
 <%= form_for @direct_message, url: rooms_path do |f| %>
-  <%= f.label :content %>
-  <%= f.text_field :content, placeholder: "メッセージを入力して下さい", size: 70 %>
-  <%= f.hidden_field :room_id, value: @room.id %>
-  <%= f.submit "投稿する" %>
+  <div class="field">
+    <%= f.label :content %>
+    <%= f.text_field :content, placeholder: "メッセージを入力して下さい", size: 70, class: 'form' %>
+    <%= f.hidden_field :room_id, value: @room.id, class: 'form' %>
+    <%= f.submit "投稿する", class: 'form_btn' %>
+  </div>
 <% end %>
 
-<%= link_to "ユーザー一覧に戻る", users_path %>
+<%= link_to "ユーザー一覧に戻る", users_path, class: 'user_link' %>

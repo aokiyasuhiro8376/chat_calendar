@@ -2,7 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-direct_message = direct_message.user.id
+direct_message = direct_message.user_id
 dm_user = document.getElementById('current_user')
 current_user = dm_user.getAttribute('data-id')
 if ('direct_message' == 'current_user')
