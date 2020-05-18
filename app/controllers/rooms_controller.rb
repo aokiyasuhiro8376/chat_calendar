@@ -7,7 +7,7 @@ class RoomsController < ApplicationController
 
 
   def index
-    @room = Room.find(params[:id]) #ルーム情報の取得
+    # @room = Room.find(params[:id]) #ルーム情報の取得
     @user = current_user
     @currentEntries = current_user.entries
     # @currentEntriesのルームを配列にする
@@ -52,7 +52,7 @@ class RoomsController < ApplicationController
 
   private
   def set_room
-    @room = Room.find(params[:id])
+    @room = Room.find_by(params[:id])
   end
 
   def move_to_index

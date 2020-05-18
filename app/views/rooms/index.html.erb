@@ -21,12 +21,12 @@
       <%# <%= @direct_messages.content %>
     </td>
     <td>
-      <h6><%= e.updated_at.strftime("%Y/%m/%d %H:%M") %></h6>
+      <h6><%= e.updated_at.strftime("%m/%d %H:%M") %></h6>
     </td>
     <td>
       <!-- ゴミ箱アイコンクリックでroomを消せるようにする -->
       <%= link_to room_path(e.room.id), method: :delete do %>
-        <i class="fas fa-trash"></i>
+        <%= fa_icon 'trash 2x' %>
       <% end %>
     </td>
   </tr>
