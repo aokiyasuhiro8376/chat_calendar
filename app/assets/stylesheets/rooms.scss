@@ -8,24 +8,42 @@ h1 {
   padding: 16px;
 }
 
+h2 {
+  font-size: 14px;
+  font-weight: bold;
+  padding: 16px;
+}
+
 h4 {
   font-size: 20px;
   font-weight: bold;
   padding: 16px;
 }
 
+h6 {
+  color: #c0c0c0;
+}
+
+table {
+  tr {
+    td {
+      width: 30%;
+      a {
+        font-size: 14px;
+        font-weight: bold;
+        padding: 16px;
+      }
+    }
+  }
+}
+
 .text-left {
   padding: 16px;
-
   a {
     font-size: 16px;
     font-weight: bold;
     color: #1da1f2;
   }
-}
-
-h6 {
-  color: #c0c0c0;
 }
 
 .field {

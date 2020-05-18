@@ -17,7 +17,7 @@ class RoomsController < ApplicationController
     end
     # @currentEntriesのルーム且つcurrent_userでないEntryを新着順で取ってくる
     @anotherEntries = Entry.where(room_id: myRoomIds).where.not(user_id: @user.id).order(created_at: :desc)
-    @direct_messages = @room.direct_messages
+    # @direct_messages = @room.direct_messages
 
     # @anotherEntries = DirectMessage.where(room_id: myRoomIds)
   end
