@@ -19,8 +19,8 @@
 <!-- メッセージフォーム -->
 <%= form_for @direct_message, url: rooms_path do |f| %>
   <div class="field">
-    <%= f.label :content, id: "target" %>
-    <%= f.text_field :content, placeholder: "メッセージを入力して下さい", size: 70, class: 'form' %>
+    <%= f.label :content, '新しいメッセージを作成', id: "target" %>
+    <%= f.text_field :content, placeholder: "メッセージを入力して下さい", size: 70, class: 'form-control', id: 'chat-input', data: { behavior: "message_speaker" } %>
     <%= f.hidden_field :room_id, value: @room.id, class: 'form' %>
     <%= f.submit "投稿する", class: 'form_btn' %>
   </div>

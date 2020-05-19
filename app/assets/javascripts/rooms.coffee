@@ -6,10 +6,10 @@ element = document.getElementById('target')
 # 移動させたい位置の要素を取得
 rect = element.getBoundingClientRect()
 position = rect.top
-setTimeout (->
+setTimeout ->
   scrollTo 0, position
   return
-), 1000
+, 1000
 
 # javascripts
 # # //トークルーム遷移時に入力フォーム記載場所にスクロールする(最新トークは下にあるため)
