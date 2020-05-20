@@ -4,5 +4,5 @@
 <h3>チャットする友達をお選びください</h3>
 
 <% @users.each do |user| %>
-  <%= link_to "ユーザ名:#{user.name}", user_path(user.id), class: 'user_link' %>
+  <%= link_to "ユーザ名:#{user.name}", user_path(params[:id]), class: 'user_link' %>
 <% end %>

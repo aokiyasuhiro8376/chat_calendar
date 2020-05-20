@@ -137,8 +137,20 @@ table {
 }
 
 .fc-header-toolbar {
+  .fc-left{
+    padding: 16px;
+  }
+  .fc-right{
+    padding: 16px;
+  }
   .fc-center{
-  font-size: 32px;
+    padding: 16px;
+    h2 {
+      font-size: 32px;
+    }
+    }
+  .fc-clear{
+  // font-size: 32px;
   padding: 16px;
   }
 }
@@ -171,4 +183,10 @@ table {
 
 #event_start_date_1i, #event_end_date_1i{
   margin-left: 16px;
+}
+
+.outline {
+  border: solid 1px;
+  border-radius: 4px;
+  color: #1ba1f2;
 }
