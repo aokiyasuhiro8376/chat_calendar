@@ -7,14 +7,12 @@
     <% unless @user.id == current_user.id %>
       <% if @isRoom == true %>
         <%= link_to "チャットへGo!", room_path(@roomId), id: "dm_submit", class: 'user_link' %>
-        <%= fa_icon 'envelope 2x' %>
       <% else %>
         <%= form_for @room do |f| %>
           <%= fields_for @entry do |e| %>
             <%= e.hidden_field :user_id, :value=> @user.id %>
           <% end %>
           <%= f.submit "チャットを始める", id: "dm_submit", class: 'user_link' %>
-          <%= fa_icon 'envelope 2x' %>
         <% end %>
       <% end %>
     <% end %>
