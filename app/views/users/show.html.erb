@@ -5,12 +5,16 @@
 <div class='room_select'>
   <% if user_signed_in? %>
     <% unless @user.id == current_user.id %>
+    <!-- 既にroomが存在していれば既存のroomへ -->
       <% if @isRoom == true %>
-        <%= link_to "チャットへGo!", room_path(@roomId), id: "dm_submit", class: 'user_link' %>
+    <!-- roomに飛べるようにする -->
+        <%= link_to "チャットへGo!", room_path(@roomId), id: "dm_submit", class: 'user_link' do %>
+        <% end %>
       <% else %>
-        <%= form_for @room do |f| %>
+    <!-- roomが存在していなければroomを作成する  -->
+        <%= form_for @room, url: rooms_path do |f| %>
           <%= fields_for @entry do |e| %>
-            <%= e.hidden_field :user_id, :value=> @user.id %>
+            <%= e.hidden_field :user_id, value: @user.id %>
           <% end %>
           <%= f.submit "チャットを始める", id: "dm_submit", class: 'user_link' %>
         <% end %>
@@ -20,4 +24,3 @@
 </div>
 
 <%= link_to "ユーザー一覧に戻る", users_path, class: 'user_link' %>
-

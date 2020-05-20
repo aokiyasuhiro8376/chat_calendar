@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <strong>タイトル:</strong>
   <%= @event.title %>
@@ -12,13 +10,13 @@
 
 <p>
   <strong>開始:</strong>
-  <%= @event.start_date %>
+  <%= @event.start_date.strftime("%m/%d %H:%M")  %>
 </p>
 
 <p>
   <strong>終了:</strong>
-  <%= @event.end_date %>
+  <%= @event.end_date.strftime("%m/%d %H:%M")  %>
 </p>
 
-<%= link_to '変更', edit_event_path(@event) %> |
-<%= link_to '戻る', events_path %>
+<%= link_to '変更', edit_event_path(@event), class: 'action-btn' %> |
+<%= link_to '戻る', events_path, class: 'action-btn' %>

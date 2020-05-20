@@ -13,25 +13,25 @@
 
   <div class="field">
     <%= form.label :タイトル %>
-    <%= form.text_field :title %>
+    <%= form.text_field :title, class: 'input-form' %>
   </div>
 
   <div class="field">
     <%= form.label :説明 %>
-    <%= form.text_area :description %>
+    <%= form.text_area :description, class: 'input-form' %>
   </div>
 
   <div class="field">
     <%= form.label :開始 %>
-    <%= form.datetime_select :start_date %>
+    <%= form.datetime_select :start_date, class: 'input-form' %>
   </div>
 
   <div class="field">
     <%= form.label :終了 %>
-    <%= form.datetime_select :end_date %>
+    <%= form.datetime_select :end_date, class: 'input-form' %>
   </div>
 
   <div class="actions">
-    <%= form.submit :イベント追加%>
+    <%= form.submit :イベント追加, class: 'event-link'%>
   </div>
 <% end %>
