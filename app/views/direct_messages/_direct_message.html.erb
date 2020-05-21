@@ -1,6 +1,6 @@
 <p class="<%= direct_message.id %>">
   <span class="balloon1-top">
-    <%= attachment_image_tag direct_message.user, :image, class: "rounded-circle", fallback: "no_image.jpeg", size: "30x30" %>
+    <%# <%= attachment_image_tag direct_message.user, :image, class: "rounded-circle", fallback: "no_image.jpeg", size: "30x30" %> %>
     <%= direct_message.user.name %>
     <h6 class="dm_content"><%= direct_message.content %></h6>
     <h6><%= direct_message.created_at.strftime("%m/%d %H:%M") %></h6>

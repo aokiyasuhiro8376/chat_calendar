@@ -8,11 +8,10 @@
     <!-- 既にroomが存在していれば既存のroomへ -->
       <% if @isRoom == true %>
     <!-- roomに飛べるようにする -->
-        <%= link_to "チャットへGo!", room_path(@roomId), id: "dm_submit", class: 'user_link' do %>
-        <% end %>
+        <%= link_to "チャットへGo!", room_path(@roomId), id: "dm_submit", class: 'user_link' %>
       <% else %>
     <!-- roomが存在していなければroomを作成する  -->
-        <%= form_for @room, url: rooms_path do |f| %>
+        <%= form_for @room do |f| %>
           <%= fields_for @entry do |e| %>
             <%= e.hidden_field :user_id, :value=> @user.id %>
           <% end %>
