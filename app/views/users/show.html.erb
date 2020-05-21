@@ -14,7 +14,7 @@
     <!-- roomが存在していなければroomを作成する  -->
         <%= form_for @room, url: rooms_path do |f| %>
           <%= fields_for @entry do |e| %>
-            <%= e.hidden_field :user_id, value: @user.id %>
+            <%= e.hidden_field :user_id, :value=> @user.id %>
           <% end %>
           <%= f.submit "チャットを始める", id: "dm_submit", class: 'user_link' %>
         <% end %>
