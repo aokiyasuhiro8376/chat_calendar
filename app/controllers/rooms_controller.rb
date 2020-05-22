@@ -2,7 +2,7 @@
 
 class RoomsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_room, except: [:create]
+  # before_action :set_room, except: [:create]
   before_action :move_to_index, except: [:index]
 
 
@@ -18,12 +18,12 @@ class RoomsController < ApplicationController
     # @currentEntriesのルーム且つcurrent_userでないEntryを新着順で取ってくる
     @anotherEntries = Entry.where(room_id: myRoomIds).where.not(user_id: @user.id).order(created_at: :desc)
     # @direct_messages = @room.direct_messages
-    # binding.pry
     # @anotherEntries = DirectMessage.where(room_id: myRoomIds)
-    @direct_messages = DirectMessage.where(room_id: current_user.id)
+    @direct_messages = DirectMessage.where(room_id: myRoomIds)
   end
 
   def show
+    @room = Room.find(params[:id])
     # ルームが作成されているかどうか
     if Entry.where(user_id: current_user.id, room_id: @room.id).present?
       @direct_messages = @room.direct_messages #このルームのメッセージを全て取得
@@ -57,9 +57,9 @@ class RoomsController < ApplicationController
 
 
   private
-  def set_room
-    @room = Room.find(params[:id])
-  end
+  # def set_room
+  #   @room = Room.find(params[:id])
+  # end
 
   def move_to_index
     redirect_to action: :index unless user_signed_in?

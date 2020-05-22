@@ -13,8 +13,8 @@
 
 
 document.addEventListener 'turbolinks:load', ->
-  if App.room
-    App.cable.subscriptions.remove App.room
+  # if App.room
+  #   App.cable.subscriptions.remove App.room
   App.room = App.cable.subscriptions.create { channel: "RoomChannel", room: $('#direct_messages').data('room_id') },
     #通信が確立された時
     connected: ->
@@ -31,21 +31,21 @@ document.addEventListener 'turbolinks:load', ->
       @perform 'speak', direct_message: direct_message
 
 
-  # 5/8
-  $(document).on 'keypress', '[data-behavior~=room_speaker]', (event) ->
-    if event.keyCode is 13 # return = send
-      App.room.speak event.target.value
-      # [event.target.value, $('[data-user]').attr('data-user'), $('[data-room]').attr('data-room')] # speak メソッド, event.target.valueを引数に.
-      event.target.value = ''
-      event.preventDefault()
-
-
-
-  # $('#chat-input').on 'keypress', (event) ->
-  #   #return キーのキーコードが13
-  #   if event.keyCode is 13
-  #     #speakメソッド,event.target.valueを引数に.
+  # # 5/8
+  # $(document).on 'keypress', '[data-behavior~=room_speaker]', (event) ->
+  #   if event.keyCode is 13 # return = send
   #     App.room.speak event.target.value
+  #     # [event.target.value, $('[data-user]').attr('data-user'), $('[data-room]').attr('data-room')] # speak メソッド, event.target.valueを引数に.
   #     event.target.value = ''
   #     event.preventDefault()
+
+
+
+  $('#chat-input').on 'keypress', (event) ->
+    #return キーのキーコードが13
+    if event.keyCode is 13
+      #speakメソッド,event.target.valueを引数に.
+      App.room.speak event.target.value
+      event.target.value = ''
+      event.preventDefault()
       
