@@ -37,7 +37,7 @@ table {
   }
 }
 
-.text-left {
+.room_user {
   padding: 16px;
   a {
     font-size: 16px;
@@ -74,4 +74,40 @@ table {
     text-decoration: none;
     text-align: center;
   }
+}
+
+.dm-form {
+  height: 30%;
+  overflow: hidden;
+  padding: 8px 0;
+
+  &_name {
+    font-size: 14px;
+    color: #1da1f2;
+    margin-left: 16px;
+  }
+  &_content {
+    // width: 200px;
+    margin-left: 16px;
+    padding: 2px;
+    font-size: 14px;
+    border: 1px solid #aaa;
+    border-radius: 10px;
+    max-width: -webkit-calc(100% - 80px);
+    max-width: calc(100% - 80px);
+    display: inline-block;
+  }
+  &_time {
+    margin-left: 16px;
+    display: contents;
+  }
+}
+
+.chat-input-form {
+  width: 300px;
+  text-align: center;
+  border-radius: 4px;
+  margin: 16px 0 0 16px;
+  padding: 6px;
+
 }

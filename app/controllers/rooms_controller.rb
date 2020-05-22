@@ -38,7 +38,7 @@ class RoomsController < ApplicationController
 
   def create
     # @user = User.find_by(params[:name])
-    @room = Room.create(name: "DM")
+    @room = Room.create(name: "Chat room")
     # entryにログインユーザーを作成
     @entry1 = Entry.create(room_id: @room.id, user_id: current_user.id)
     # entryにparamsユーザーを作成
