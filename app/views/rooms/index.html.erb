@@ -1,7 +1,7 @@
 <%= render './shared/header' %>
+<%= render 'shared/welcom' %>
 
-  <% if user_signed_in? %>
-    <%= render 'shared/welcom' %>
-    <%= render 'users/index' %>
-
-  <% end %>
+<% if user_signed_in? %>
+  <%= render 'users/index' %>
+  <%# <%= render 'users/show' %> 
+<% end %>

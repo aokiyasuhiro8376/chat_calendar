@@ -7,7 +7,6 @@ class RoomsController < ApplicationController
 
 
   def index
-    # users/index用
     @users = User.all
     # @room = Room.find(params[:id]) #ルーム情報の取得
     # @user = current_user
