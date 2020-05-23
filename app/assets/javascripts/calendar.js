@@ -10,9 +10,9 @@
 //設定例
 $(document).ready(function() {
 
-  var select = function(start, end) {
+  var select = function(start_date, end_date) {
     var title = window.prompt("title");
-    start_time = start.unix()
+    start_time = start_date.unix()
     var d = new Date( start_time * 1000 );
     var year = d.getYear() + 1900;
     var month = d.getMonth() + 1;
@@ -21,7 +21,7 @@ $(document).ready(function() {
     var min   = ( d.getMinutes() < 10 ) ? '0' + d.getMinutes() : d.getMinutes();
     var moment_start = year+"-"+month+"-"+day+" "+hour+":"+min;
     var start_time = moment(moment_start).add(-9, 'hour').format("YYYY-MM-DD HH:mm");
-    end_time = end.unix()
+    end_time = end_date.unix()
     var d = new Date( end_time * 1000 );
     var year = d.getYear() + 1900;
     var month = d.getMonth() + 1;
@@ -33,14 +33,14 @@ $(document).ready(function() {
     var data = {
       event: {
         title: title,
-        start: start_time,
-        end: end_time,
+        start_date: start_time,
+        end_date: end_time,
         allday: false
       }
     }
     $.ajax({
       type: "POST",
-      url: "/api/v1/events",
+      url: "/events",
       data: data,
       success: function() {
         calendar.fullCalendar('refetchEvents');
@@ -60,7 +60,7 @@ $(document).ready(function() {
     monthNamesShort: ['１月','２月','３月','４月','５月','６月','７月','８月','９月','１０月','１１月','１２月'],
     dayNames: ['日曜日','月曜日','火曜日','水曜日','木曜日','金曜日','土曜日'],
     dayNamesShort: ['日','月','火','水','木','金','土'],
-    events: "/api/v1/events",
+    events: "/events",
     editable: true,        // 編集可
     selectable: true,      // 選択可
     selectHelper: true,    // 選択時にプレースホルダーを描画
@@ -120,8 +120,8 @@ $(document).ready(function() {
       var data = {
         event: {
           title: event.title,
-          start: start_time,
-          end: end_time,
+          start_date: start_time,
+          end_date: end_time,
           allday: false
         }
       }
@@ -157,8 +157,8 @@ $(document).ready(function() {
       var data = {
         event: {
           title: event.title,
-          start: start_time,
-          end: end_time,
+          start_date: start_time,
+          end_date: end_time,
           allday: false
         }
       }
