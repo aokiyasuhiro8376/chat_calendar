@@ -1,8 +1,8 @@
 <%# <p class='<%= direct_message.id %>
-  <div class='dm-form' >
-    <%# <%= attachment_image_tag direct_message.user, :image, class: "dm-form_image", fallback: "no_image.jpeg", size: "30x30" %>
-    <div class='dm-form_name'><%= direct_message.user.name %></div>
-    <div class="dm-form_content"><%= direct_message.content %></div>
-    <div class='dm-form_time'><%= direct_message.created_at.strftime("%H:%M") %></>
-  </div>
+<div class='dm-form' >
+  <%# <%= attachment_image_tag direct_message.user, :image, class: "dm-form_image", fallback: "no_image.jpeg", size: "30x30" %>
+  <div class='dm-form_name'><%= direct_message.user.name %></div>
+  <div class="dm-form_content"><%= direct_message.content %></div>
+  <div class='dm-form_time'><%= direct_message.created_at.strftime("%H:%M") %></div>
+</div>
 <%# </p> %>

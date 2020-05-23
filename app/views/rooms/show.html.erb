@@ -1,20 +1,24 @@
-<h1><%= @room.name %></h1>
-<h4>参加者</h4>
-<% @entries.each do |e| %>
-  <div class='room_user'>
-    <%= link_to "@#{e.user.name}", user_path(e.user_id) %>
+<%= render './events/index' %>
+
+<div class='chatbar'>
+  <h1><%= @room.name %></h1>
+  <h4>参加者 : 
+    <% @entries.each do |e| %>
+      <div class='room_user'>
+        <%= link_to "@#{e.user.name}", user_path(e.user_id) %>
+      </div>
+    <% end %>
+  </h4>
+  <div id="direct_messages" data-room_id="<%= @room.id %>">
+    <%= render @direct_messages %>
   </div>
-<% end %>
 
-<div id="direct_messages" data-room_id="<%= @room.id %>">
-  <%= render @direct_messages %>
+  <form>
+    <%# <label> 新しいメッセージ:</label><br /> %>
+    <input type="text" id="chat-input" data-behavior="room_speaker" class='chat-input-form' placeholder='メッセージを入力'>
+  </form>
+
+  <%# <%= link_to "メッセージ一覧に戻る", rooms_path, class: 'user_link' %> 
+
+  <%= link_to "ユーザー一覧に戻る", users_path, class: 'user_link' %>
 </div>
-
-<form>
-  <%# <label> 新しいメッセージ:</label><br /> %>
-  <input type="text" id="chat-input" data-behavior="room_speaker" class='chat-input-form' placeholder='メッセージを入力'>
-</form>
-
-<%# <%= link_to "メッセージ一覧に戻る", rooms_path, class: 'user_link' %> 
-
-<%= link_to "ユーザー一覧に戻る", users_path, class: 'user_link' %>

@@ -1,6 +1,6 @@
 <%= render "./shared/header"%>
 
-<% if user_signed_in? %>
+<div class='leftbar'>
   <div class='today-todo'>今日の予定</div>
 
   <table>
@@ -32,5 +32,6 @@
 
   <div id= "calendar" ></div>
 
-<% end %>
+  <% end %>
+</div>
 

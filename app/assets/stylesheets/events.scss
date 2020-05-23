@@ -14,12 +14,17 @@ body {
   font-size: 13px;
 }
 
+.leftbar {
+  width: 60%;
+  display: inline-block;
+  vertical-align: top;
+}
+
 p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
   line-height: 18px;
   color: #000;
-  padding: 16px;
 }
 
 pre {
@@ -93,7 +98,7 @@ span {
 }
 
 .today-todo {
-  font-size: 18px;
+  font-size: 32px;
   font-weight: bold;
   padding: 16px;
 }
@@ -105,13 +110,16 @@ table {
       padding: 16px;
       th {
         width: 25px;
-        font-size: 14px;
+        font-size: 16px;
         font-weight: bold;
         padding-left: 16px;
       }
     }
   }
   tbody {
+    border-top: solid 1px #aaa;
+    border-bottom: solid 1px #aaa;
+    padding: 8px;  
     tr {
       background-color: white;
       color: #1da1f2;
@@ -138,20 +146,20 @@ table {
 
 .fc-header-toolbar {
   .fc-left{
-    padding: 16px;
+    // padding: 16px;
   }
   .fc-right{
-    padding: 16px;
+    // padding: 16px;
   }
   .fc-center{
-    padding: 16px;
+    // padding: 16px;
     h2 {
       font-size: 32px;
     }
     }
   .fc-clear{
   // font-size: 32px;
-  padding: 16px;
+  // padding: 16px;
   }
 }
 

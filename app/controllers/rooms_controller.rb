@@ -1,25 +1,28 @@
 # frozen_string_literal: true
 
 class RoomsController < ApplicationController
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
   # before_action :set_room, except: [:create]
   before_action :move_to_index, except: [:index]
 
 
   def index
+    # users/index用
+    @users = User.all
     # @room = Room.find(params[:id]) #ルーム情報の取得
-    @user = current_user
-    @currentEntries = current_user.entries
+    # @user = current_user
+    # @currentEntries = current_user.entries
     # @currentEntriesのルームを配列にする
-    myRoomIds = []
-    @currentEntries.each do |entry|
-      myRoomIds << entry.room.id
-    end
+    # myRoomIds = []
+    # @currentEntries.each do |entry|
+      # myRoomIds << entry.room.id
+    # end
     # @currentEntriesのルーム且つcurrent_userでないEntryを新着順で取ってくる
-    @anotherEntries = Entry.where(room_id: myRoomIds).where.not(user_id: @user.id).order(created_at: :desc)
+    # @anotherEntries = Entry.where(room_id: myRoomIds).where.not(user_id: @user.id).order(created_at: :desc)
     # @direct_messages = @room.direct_messages
     # @anotherEntries = DirectMessage.where(room_id: myRoomIds)
-    @direct_messages = DirectMessage.where(room_id: myRoomIds)
+    # @direct_messages = DirectMessage.where(room_id: myRoomIds)
+    # render template: "users/index"
   end
 
   def show
@@ -33,6 +36,14 @@ class RoomsController < ApplicationController
       # @direct_messages = @room.direct_messages #このルームのメッセージを全て取得
     else
       redirect_back(fallback_location: root_path)
+    end
+    # カレンダー
+    @events = Event.all
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml { render xml: @events }
+      format.json { render json: @events }
     end
   end
 

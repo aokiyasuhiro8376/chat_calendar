@@ -2,6 +2,11 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.chatbar {
+  width: 35%;
+  display: inline-block;
+  margin-left: 24px;
+}
 h1 {
   font-size: 32px;
   font-weight: bold;
@@ -15,9 +20,9 @@ h2 {
 }
 
 h4 {
-  font-size: 20px;
+  font-size: 16px;
   font-weight: bold;
-  padding: 16px;
+  padding: 0 0 16px 16px;
 }
 
 h6 {
@@ -38,7 +43,8 @@ table {
 }
 
 .room_user {
-  padding: 16px;
+  padding-left: 16px;
+  display: inline-block;
   a {
     font-size: 16px;
     font-weight: bold;
@@ -73,33 +79,6 @@ table {
     background-color: #1da1f2;
     text-decoration: none;
     text-align: center;
-  }
-}
-
-.dm-form {
-  height: 30%;
-  overflow: hidden;
-  padding: 8px 0;
-
-  &_name {
-    font-size: 14px;
-    color: #1da1f2;
-    margin-left: 16px;
-  }
-  &_content {
-    // width: 200px;
-    margin-left: 16px;
-    padding: 2px;
-    font-size: 14px;
-    border: 1px solid #aaa;
-    border-radius: 10px;
-    max-width: -webkit-calc(100% - 80px);
-    max-width: calc(100% - 80px);
-    display: inline-block;
-  }
-  &_time {
-    margin-left: 16px;
-    display: contents;
   }
 }
 
