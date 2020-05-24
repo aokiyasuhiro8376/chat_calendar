@@ -1,22 +1,22 @@
 # frozen_string_literal: true
 
 class RoomsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:index]
   # before_action :set_room, except: [:create]
   before_action :move_to_index, except: [:index]
 
 
   def index
     @users = User.all
-    @user = current_user
-    @currentEntries = current_user.entries
-    # @currentEntriesのルームを配列にする
-    myRoomIds = []
-    @currentEntries.each do |entry|
-      myRoomIds << entry.room.id
-    end
-    # @currentEntriesのルーム且つcurrent_userでないEntryを新着順で取ってくる
-    @anotherEntries = Entry.where(room_id: myRoomIds).where.not(user_id: @user.id).order(created_at: :desc)
+    # @user = current_user
+    # @currentEntries = current_user.entries
+    # # @currentEntriesのルームを配列にする
+    # myRoomIds = []
+    # @currentEntries.each do |entry|
+    #   myRoomIds << entry.room.id
+    # end
+    # # @currentEntriesのルーム且つcurrent_userでないEntryを新着順で取ってくる
+    # @anotherEntries = Entry.where(room_id: myRoomIds).where.not(user_id: @user.id).order(created_at: :desc)
     # @direct_messages = @room.direct_messages
     # @anotherEntries = DirectMessage.where(room_id: myRoomIds)
     # @direct_messages = DirectMessage.where(room_id: myRoomIds)
