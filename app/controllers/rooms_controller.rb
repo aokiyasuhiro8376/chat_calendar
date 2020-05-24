@@ -7,7 +7,7 @@ class RoomsController < ApplicationController
 
 
   def index
-    # @users = User.all
+    @users = User.all
     @user = current_user
     @currentEntries = current_user.entries
     # @currentEntriesのルームを配列にする
@@ -36,6 +36,15 @@ class RoomsController < ApplicationController
     else
       redirect_back(fallback_location: root_path)
     end
+
+    @events = Event.all
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml { render xml: @events }
+      format.json { render json: @events }
+    end
+
   end
 
   def create
