@@ -5,3 +5,5 @@
 <% @users.each do |user| %>
   <%= link_to "ユーザ名:#{user.name}", user_path(user.id), class: 'user_link' %>
 <% end %>
+
+<%= link_to "トップに戻る", rooms_path, class: 'user_link' %>
