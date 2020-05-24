@@ -18,3 +18,9 @@
 //= require moment
 //= require fullcalendar
 //= require_tree .
+
+$(() => {
+  $(document).on('turbolinks:load', () => {
+    $('#calendar').fullCalendar({})
+  })
+})

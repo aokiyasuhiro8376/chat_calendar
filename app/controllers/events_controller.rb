@@ -33,6 +33,8 @@ class EventsController < ApplicationController
 
 
   def index
+    # @room = Room.find(params[:id]) #ルーム情報の取得
+
     @events = Event.all
 
     respond_to do |format|
@@ -100,7 +102,7 @@ class EventsController < ApplicationController
   # end
 
   def event_params
-    params.require(:event).permit(:title, :description, :start_date, :end_date, :color, :allday, :user_id, :room_id)
+    params.require(:event).permit(:title, :start_date, :end_date, :color, :allday, :user_id, :room_id)
     # .merge(user_id: current_user.id, room_id: @room.id)
   end
 end

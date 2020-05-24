@@ -5,7 +5,6 @@
     <thead>
       <tr>
         <th>タイトル</th>
-        <th>説明</th>
         <th>開始</th>
         <th>終了</th>
       </tr>
@@ -15,7 +14,6 @@
       <% @events.each do |event| %>
         <tr>
           <td><%= event.title %></td>
-          <td><%= event.description %></td>
           <td><%= event.start_date.strftime("%m/%d %H:%M") %></td>
           <td><%= event.end_date.strftime("%m/%d %H:%M") %></td>
           <td><%= link_to '表示', event %></td>

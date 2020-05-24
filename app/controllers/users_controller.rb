@@ -33,8 +33,5 @@ class UsersController < ApplicationController
         @entry = Entry.new
       end
     end
-    # カレンダー
-    @events = Event.where(user_id: @user.id)
-    @event = Event.new
   end
 end

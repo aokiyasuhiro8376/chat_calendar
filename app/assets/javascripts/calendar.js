@@ -100,7 +100,7 @@ $(document).ready(function() {
     },
     eventResize: function(event) { //イベントをサイズ変更した際に実行
       var id = event.id
-      var update_url = "/api/v1/events/"+id
+      var update_url = "events/"+id
       var event_start_time = event._start._d
       var year = event_start_time.getYear() + 1900;
       var month = event_start_time.getMonth() + 1;
@@ -137,7 +137,7 @@ $(document).ready(function() {
     },
     eventDrop: function(event) { //イベントをドラッグ&ドロップした際に実行
       var id = event.id
-      var update_url = "/api/v1/events/"+id
+      var update_url = "/events/"+id
       var event_start_time = event._start._d
       var year = event_start_time.getYear() + 1900;
       var month = event_start_time.getMonth() + 1;
