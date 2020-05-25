@@ -56,12 +56,7 @@ class EventsController < ApplicationController
   def new
     @event = Event.new
     @user = User.find_by(params[:id])
-    # @room = Room.find_by(params[:id]) #ルーム情報の取得
     @room = Room.find_by(params[:id]) #ルーム情報の取得
-    # binding.pry
-
-
-
   end
 
   def edit
@@ -72,7 +67,6 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
     # @user = User.find_by(params[:id])
     @room = Room.find_by(params[:id]) #ルーム情報の取得
-    # binding.pry
 
     respond_to do |format|
       if @event.save

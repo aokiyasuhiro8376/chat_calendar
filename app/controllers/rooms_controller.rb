@@ -48,13 +48,10 @@ class RoomsController < ApplicationController
   end
 
   def create
-    # @user = User.find_by(params[:name])
     @room = Room.create(name: "Chat room")
     # entryにログインユーザーを作成
     @entry1 = Entry.create(room_id: @room.id, user_id: current_user.id)
     # entryにparamsユーザーを作成
-    # @entry2 = Entry.create(params.permit(:user_id, :room_id).merge(room_id: @room.id))
-    # redirect_to room_path(@room.id)
     @entry2 = Entry.create(params.require(:entry).permit(:user_id, :room_id).merge(room_id: @room.id))
     redirect_to room_path(@room.id)
   end
