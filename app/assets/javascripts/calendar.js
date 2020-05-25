@@ -76,7 +76,7 @@ $(document).ready(function() {
       week:     '週',
       day:      '日'
     },
-    height: 800,                           // 高さ
+    height: 400,                           // 高さ
     defaultView: 'agendaWeek',             // 初期表示ビュー
     eventLimit: true,                      // allow "more" link when too many events
     firstDay: 0,                           // 最初の曜日, 0:日曜日

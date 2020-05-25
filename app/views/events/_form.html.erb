@@ -33,6 +33,7 @@
   <div class="field">
     <%# <%= form.label :部屋番号 %>
     <%# <%= form.hidden_field :room_id, :value => params[:room_id] %>
+    <%= form.hidden_field :user_id, :value => @user.id %>
     <%= form.hidden_field :room_id, :value => @room.id %>
   </div>
 

@@ -1,5 +1,5 @@
 <div class='leftbar'>
-  <div class='today-todo'>今日の予定</div>
+  <div class='todo'>予定リスト</div>
 
   <table>
     <thead>
@@ -9,7 +9,6 @@
         <th>終了</th>
       </tr>
     </thead>
-
     <tbody>
       <% @events.each do |event| %>
         <tr>
@@ -24,7 +23,7 @@
     </tbody>
   </table>
 
-  <%= link_to 'イベント追加', new_event_path, class: 'event-link' %>
+  <%= link_to 'イベント追加', new_event_path, class: 'eventadd' %>
   <%# # , room_id: @room.id,  %>
 
   <div id= "calendar" ></div>

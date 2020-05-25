@@ -33,8 +33,8 @@ class EventsController < ApplicationController
 
 
   def index
-    # @user = User.find(params[:id])
-    @room = Room.where(params[:id]) #ルーム情報の取得
+    @user = User.find_by(params[:id])
+    @room = Room.find_by(params[:id]) #ルーム情報の取得
 
     @events = Event.all
 
@@ -55,9 +55,11 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
-    # @user = User.find(params[:id])
+    @user = User.find_by(params[:id])
     # @room = Room.find_by(params[:id]) #ルーム情報の取得
-    @room = Room.find_by(params[:room_id]) #ルーム情報の取得
+    @room = Room.find_by(params[:id]) #ルーム情報の取得
+    # binding.pry
+
 
 
   end
@@ -68,8 +70,8 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
-    # @user = User.find(params[:id])
-    @room = Room.find_by(params[:room_id]) #ルーム情報の取得
+    # @user = User.find_by(params[:id])
+    @room = Room.find_by(params[:id]) #ルーム情報の取得
     # binding.pry
 
     respond_to do |format|
@@ -109,9 +111,9 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
   end
 
-  def set_room
-    @room = Room.find(params[:id])
-  end
+  # def set_room
+  #   @room = Room.find(params[:id])
+  # end
 
   # def set_current_user
   #   @current_user = User.find(params[:id])

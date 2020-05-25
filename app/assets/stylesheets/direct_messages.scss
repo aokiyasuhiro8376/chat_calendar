@@ -20,6 +20,8 @@ p {
   border-top: solid 1px #aaa;
   border-bottom: solid 1px #aaa;
   padding: 8px;
+  max-height: 50vh;
+  overflow: auto; 
 }
 .dm-form {
   height: 30%;
