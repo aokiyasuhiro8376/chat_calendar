@@ -30,7 +30,7 @@ class RoomsController < ApplicationController
     if Entry.where(user_id: current_user.id, room_id: @room.id).present?
       @direct_messages = @room.direct_messages #このルームのメッセージを全て取得
       @entries = @room.entries
-      # @room = Room.find(params[:id])
+      @room = Room.find(params[:id])
       # @direct_message = DirectMessage.new #新規メッセージ投稿
       # @direct_messages = @room.direct_messages #このルームのメッセージを全て取得
     else

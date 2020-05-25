@@ -1,4 +1,6 @@
 <%= form_with(model: event, local: true) do |form| %>
+<%# # url: room_path(@room.id) %>
+<%# , local: true) do |form| %> 
   <% if event.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
@@ -14,6 +16,8 @@
   <div class="field">
     <%= form.label :タイトル %>
     <%= form.text_field :title, class: 'input-form' %>
+    <%# <%= form.hidden_field :room_id, :value => @room.id %>
+    <%# <%= form.hidden_field :user_id, :value => @user.id %>
   </div>
 
   <div class="field">
@@ -27,12 +31,12 @@
   </div>
 
   <div class="field">
-    <%# <%= form.label :終了 %> 
-    <%= form.hidden_field :room_id, :value => params[:room_id] %>
+    <%# <%= form.label :部屋番号 %>
+    <%# <%= form.hidden_field :room_id, :value => params[:room_id] %>
+    <%= form.hidden_field :room_id, :value => @room.id %>
   </div>
 
   <div class="actions">
-    <%= form.submit :イベント追加, class: 'event-link'%>
-    <% link_to%>
+    <%= form.submit :イベント追加, class: 'event-link' %>
   </div>
 <% end %>

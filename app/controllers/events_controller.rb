@@ -29,11 +29,12 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
   before_action :set_event, only: %i[update destroy] # パラメータのidからレコードを特定するメソッド
-  before_action :set_room, only: %i[index update destroy] # パラメータのidからレコードを特定するメソッド
+  # before_action :set_room, only: %i[index update destroy] # パラメータのidからレコードを特定するメソッド
 
 
   def index
-    @room = Room.find(params[:id]) #ルーム情報の取得
+    # @user = User.find(params[:id])
+    @room = Room.where(params[:id]) #ルーム情報の取得
 
     @events = Event.all
 
@@ -42,26 +43,39 @@ class EventsController < ApplicationController
       format.xml { render xml: @events }
       format.json { render json: @events }
     end
+
+    render template: 'events/_index'
+    # render template: './rooms/show'
+
   end
 
   def show
+    @event = Event.find(params[:id])
   end
 
   def new
     @event = Event.new
+    # @user = User.find(params[:id])
+    # @room = Room.find_by(params[:id]) #ルーム情報の取得
+    @room = Room.find_by(params[:room_id]) #ルーム情報の取得
+
 
   end
 
   def edit
+    @event = Event.find_by(params[:id])
   end
 
   def create
     @event = Event.new(event_params)
+    # @user = User.find(params[:id])
+    @room = Room.find_by(params[:room_id]) #ルーム情報の取得
     # binding.pry
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
+        format.html { redirect_to room_path(@room.id) }
+          # redirect_to @event, notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @event }
       else
         format.html { render :new }
@@ -105,5 +119,6 @@ class EventsController < ApplicationController
 
   def event_params
     params.require(:event).permit(:title, :start_date, :end_date, :user_id, :room_id)
+    # .meage(user_id: current_user.id, room_id: @room.id)
   end
 end
