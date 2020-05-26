@@ -4,8 +4,8 @@
 
 ## このアプリについて
 このアプリは、チャット機能付きのカレンダー共有アプリです。 
-![Chat_Calendar](chat_calendar_image.png)
-![Chat_Calendar](/materials/toppage.gif)
+![Chat_Calendar](chat_calendar_image.png)  
+![Chat_Calendar](chat_calendar_imagemove.gif)  
 
 ## 企画背景　
 カレンダー共有アプリを家庭内で使用している中で、予定を入れたにも関わらず「言った言っていない」「見てない、見てよ」の些細な揉め事が時折発生しておりました。
@@ -41,4 +41,5 @@ $ git clone https://github.com/aokiyasuhiro8376/chat_calendar.git
 ![Chat_Calendar](chat_calendar_er.png)
 
 ## 本番環境
-<http://18.178.61.46>
+<http://18.178.61.46>  
+※現在、本番環境は調整中です。動作しない場合が御座います。
