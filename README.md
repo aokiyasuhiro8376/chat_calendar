@@ -4,7 +4,7 @@
 
 ## このアプリについて
 このアプリは、チャット機能付きのカレンダー共有アプリです。 
-![Chat_Calendar](/materials/toppage.png)
+![Chat_Calendar](chat_calendar_image.png)
 ![Chat_Calendar](/materials/toppage.gif)
 
 ## 企画背景　
