@@ -1,12 +1,6 @@
 # README
 
 ## Chat_Calendar
-<http://18.178.61.46>
-
-![GitHub top language](https://img.shields.io/github/languages/top/iemoto/kaidan-rails)
-![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/iemoto/kaidan-rails)
-![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed-raw/iemoto/kaidan-rails)
-![GitHub contributors](https://img.shields.io/github/contributors/iemoto/kaidan-rails)
 
 ## このアプリについて
 このアプリは、チャット機能付きのカレンダー共有アプリです。 
@@ -23,6 +17,9 @@
 ・カレンダー機能　「Fullcalendar」  
 
 ### 使用手順
+```
+$ git clone https://github.com/aokiyasuhiro8376/chat_calendar.git
+```
   ①user登録を行う。  
   ②user同士でroom（部屋）を作る。  
   ③カレンダーにeventを追加する。    
@@ -40,12 +37,7 @@
 ・usabilityに優れた構成のviewにする。  
 ・レスポンシブ対応にする。  
 
-## USAGE
-
-```
-$ git 
-```
-
 ## DB設計
 
-
+## 本番環境
+<http://18.178.61.46>
