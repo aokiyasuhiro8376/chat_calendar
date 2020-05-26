@@ -38,6 +38,7 @@ $ git clone https://github.com/aokiyasuhiro8376/chat_calendar.git
 ・レスポンシブ対応にする。  
 
 ## DB設計
+![Chat_Calendar](chat_calendar_er.png)
 
 ## 本番環境
 <http://18.178.61.46>
