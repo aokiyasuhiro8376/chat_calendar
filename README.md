@@ -1,24 +1,51 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Chat_Calendar
+<http://18.178.61.46>
 
-Things you may want to cover:
+![GitHub top language](https://img.shields.io/github/languages/top/iemoto/kaidan-rails)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/iemoto/kaidan-rails)
+![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed-raw/iemoto/kaidan-rails)
+![GitHub contributors](https://img.shields.io/github/contributors/iemoto/kaidan-rails)
 
-* Ruby version
+## このアプリについて
+このアプリは、チャット機能付きのカレンダー共有アプリです。 
+![Chat_Calendar](/materials/toppage.png)
+![Chat_Calendar](/materials/toppage.gif)
 
-* System dependencies
+## 企画背景　
+カレンダー共有アプリを家庭内で使用している中で、予定を入れたにも関わらず「言った言っていない」「見てない、見てよ」の些細な揉め事が時折発生しておりました。
+そんな時、チャット機能付きのカレンダー共有アプリを思いつき作成致しました。
 
-* Configuration
+### 実装した機能
+・ユーザー登録機能　「devise」  
+・チャット機能　「ActionCable」   
+・カレンダー機能　「Fullcalendar」  
 
-* Database creation
+### 使用手順
+  ①user登録を行う。  
+  ②user同士でroom（部屋）を作る。  
+  ③カレンダーにeventを追加する。    
+  ④チャットでカレンダーにeventを追加した旨を連絡。  
+  →　「言った言っていない」「見てない、見てよ」　は、無くなるはず。  
 
-* Database initialization
+### 開発環境
+・mac OS 10.14.6 Mojave  
+・主な言語: Ruby(2.5.1), Rails(5.2.3), jquery, html.erb, scss  
+・エディター: VSCode  
+・ブラウザ: chrome  
 
-* How to run the test suite
+## 改善予定
+### 機能、見た目  
+・usabilityに優れた構成のviewにする。  
+・レスポンシブ対応にする。  
 
-* Services (job queues, cache servers, search engines, etc.)
+## USAGE
 
-* Deployment instructions
+```
+$ git 
+```
 
-* ...
+## DB設計
+
+
