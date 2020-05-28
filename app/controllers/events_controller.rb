@@ -36,7 +36,7 @@ class EventsController < ApplicationController
     @user = User.find_by(params[:id])
     @room = Room.find_by(params[:id]) #ルーム情報の取得
 
-    @events = Event.all
+    @events = Event.find(room_id: @room.id == current_user.@room.id)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -56,7 +56,7 @@ class EventsController < ApplicationController
   def new
     @event = Event.new
     @user = User.find_by(params[:id])
-    @room = Room.find_by(params[:id]) #ルーム情報の取得
+    @room = Room.find_by(params[:room_id]) #ルーム情報の取得
   end
 
   def edit
@@ -66,7 +66,7 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     # @user = User.find_by(params[:id])
-    @room = Room.find_by(params[:id]) #ルーム情報の取得
+    @room = Room.find_by(params[:room_id]) #ルーム情報の取得
 
     respond_to do |format|
       if @event.save
