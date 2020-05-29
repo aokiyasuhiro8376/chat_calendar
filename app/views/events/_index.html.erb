@@ -16,7 +16,7 @@
           <td><%= event.start_date.strftime("%m/%d %H:%M") %></td>
           <td><%= event.end_date.strftime("%m/%d %H:%M") %></td>
           <td><%= link_to '表示', event %></td>
-          <td><%= link_to '変更', edit_event_path(event) %></td>
+          <td><%= link_to '変更', edit_event_path(current_user) %></td>
           <td><%= link_to '消去', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>

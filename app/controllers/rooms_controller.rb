@@ -37,7 +37,7 @@ class RoomsController < ApplicationController
       redirect_back(fallback_location: root_path)
     end
 
-    @events = Event.all
+    @events = Event.where(room_id: @room.id)
 
     respond_to do |format|
       format.html # index.html.erb

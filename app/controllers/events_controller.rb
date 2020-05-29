@@ -33,10 +33,10 @@ class EventsController < ApplicationController
 
 
   def index
-    @user = User.find_by(params[:id])
-    @room = Room.find_by(params[:id]) #ルーム情報の取得
+    # @user = User.find_by(params[:id])
+    # @room = Room.find_by(params[:id]) #ルーム情報の取得
 
-    @events = Event.find(room_id: @room.id == current_user.@room.id)
+    # @events = Event.find(room_id: @room.id == current_user.@room.id)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -54,9 +54,9 @@ class EventsController < ApplicationController
   end
 
   def new
-    @event = Event.new
     @user = User.find_by(params[:id])
-    @room = Room.find_by(params[:room_id]) #ルーム情報の取得
+    @room = Room.find_by(params[:id]) #ルーム情報の取得
+    @event = Event.new
   end
 
   def edit
@@ -64,13 +64,16 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.new(event_params)
-    # @user = User.find_by(params[:id])
-    @room = Room.find_by(params[:room_id]) #ルーム情報の取得
+    event = Event.new(event_params)
+    event.save!
+    @events = Event.where(user_id: current_user.id)
 
+    @user = User.find_by(params[:id])
+    @room = Room.find_by(params[:id]) #ルーム情報の取得
+    @event = Event.new(event_params)
     respond_to do |format|
       if @event.save
-        format.html { redirect_to room_path(@room.id) }
+        format.html { redirect_to room_path(current_user) }
           # redirect_to @event, notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @event }
       else
