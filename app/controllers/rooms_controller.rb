@@ -37,14 +37,14 @@ class RoomsController < ApplicationController
       redirect_back(fallback_location: root_path)
     end
 
-    # @events = Event.where(room_id: @room.id)
+    @events = Event.where(room_id: @room.id)
 
     # respond_to do |format|
     #   format.html # index.html.erb
     #   format.xml { render xml: @events }
     #   format.json { render json: @events }
     # end
-
+    render template: 'events/index'
   end
 
   def create
