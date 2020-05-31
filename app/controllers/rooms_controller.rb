@@ -7,7 +7,7 @@ class RoomsController < ApplicationController
 
 
   def index
-    @users = User.all
+    @users = User.where.not(id: current_user)
     # @user = current_user
     # @currentEntries = current_user.entries
     # # @currentEntriesのルームを配列にする
@@ -20,7 +20,7 @@ class RoomsController < ApplicationController
     # @direct_messages = @room.direct_messages
     # @anotherEntries = DirectMessage.where(room_id: myRoomIds)
     # @direct_messages = DirectMessage.where(room_id: myRoomIds)
-    render template: "users/index"
+    # render template: "users/index"
     # @room = Room.find(params[:id]) #ルーム情報の取得
   end
 
@@ -60,6 +60,32 @@ class RoomsController < ApplicationController
     @entry2 = Entry.create(params.require(:entry).permit(:user_id, :room_id).merge(room_id: @room.id))
     # redirect_to room_path(@room.id)
 
+    @event = Event.new(event_params)
+    if @event.save
+      redirect_to room_path(@room.id)
+    else
+      redirect_to new_event_path
+
+
+    # respond_to do |format|
+    #   if @event.save
+        # redirect_to action: :show 
+        # redirect_to '/rooms/:id'
+        # redirect_to room_path(@room.id)
+
+        # redirect_to template: 'rooms/show' and return 
+
+
+
+      #   format.html { redirect_to template: 'rooms/show', location: @event }
+      #   format.json { render :show, status: :created, location: @event }
+      # else
+      #   format.html { render :new }
+      #   format.json { render json: @event.errors, status: :unprocessable_entity }
+      # end
+    # end
+    end
+  
     # render template: 'events/index'
     # redirect_to action: :show 
   end
@@ -75,6 +101,10 @@ class RoomsController < ApplicationController
   private
   def set_room
     @room = Room.find_by(params[:id])
+  end
+
+  def event_params
+    params.require(:event).permit(:title, :start_date, :end_date, :color, :allday, :user_id, :room_id).merge(user_id: current_user.id, room_id: @room.id)
   end
 
   def move_to_index

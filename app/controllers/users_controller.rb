@@ -4,9 +4,7 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @users = User.all
-    # render template: 'users/_index'
-    # .where.not(id: current_user)
+    @users = User.where.not(id: current_user)
   end
 
   def show

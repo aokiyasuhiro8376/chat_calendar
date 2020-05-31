@@ -156,11 +156,18 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
+    if @event.save
+      redirect_to room_path(@room.id)
+    else
+      redirect_to new_event_path
 
-    respond_to do |format|
-      if @event.save
+
+    # respond_to do |format|
+    #   if @event.save
         # redirect_to action: :show 
-        redirect_to room_path(@room.id)
+        # redirect_to '/rooms/:id'
+        # redirect_to room_path(@room.id)
+
         # redirect_to template: 'rooms/show' and return 
 
 
@@ -170,14 +177,15 @@ class EventsController < ApplicationController
       # else
       #   format.html { render :new }
       #   format.json { render json: @event.errors, status: :unprocessable_entity }
-      end
+      # end
     end
   end
 
   def update
     respond_to do |format|
       if @event.update(event_params)
-        format.html { redirect_to template: 'rooms/show', location: @event }
+        format.html { redirect_to room_path(@room.id), location: @event }
+          # template: 'rooms/show', location: @event }
         format.json { render :show, status: :ok, location: @event }
       else
         format.html { render :edit }
@@ -189,7 +197,8 @@ class EventsController < ApplicationController
   def destroy
     @event.destroy
     respond_to do |format|
-      format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
+      format.html { redirect_to room_path(@room.id), location: @event }
+      # events_url, notice: 'Event was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
