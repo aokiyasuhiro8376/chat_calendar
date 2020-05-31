@@ -129,10 +129,13 @@
 
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy] #パラメータのidからレコードを特定するメソッド
-  before_action :set_room, only: [:create, :update] #パラメータのidからレコードを特定するメソッド
+  before_action :set_room, only: [:index, :create, :update] #パラメータのidからレコードを特定するメソッド
 
   def index
-    @events = Event.all
+    # @events = Event.all
+
+    @events = Event.where(room_id: @room.id)
+
 
     # respond_to do |format|
     #   format.html # index.html.erb
@@ -156,11 +159,17 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to template: 'rooms/show' }
-        format.json { render :show, status: :created, location: @event }
-      else
-        format.html { render :new }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
+        # redirect_to action: :show 
+        redirect_to room_path(@room.id)
+        # redirect_to template: 'rooms/show' and return 
+
+
+
+      #   format.html { redirect_to template: 'rooms/show', location: @event }
+      #   format.json { render :show, status: :created, location: @event }
+      # else
+      #   format.html { render :new }
+      #   format.json { render json: @event.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -168,7 +177,7 @@ class EventsController < ApplicationController
   def update
     respond_to do |format|
       if @event.update(event_params)
-        format.html { redirect_to template: 'rooms/show' }
+        format.html { redirect_to template: 'rooms/show', location: @event }
         format.json { render :show, status: :ok, location: @event }
       else
         format.html { render :edit }
@@ -186,15 +195,15 @@ class EventsController < ApplicationController
   end
 
   private
-    def set_event
-      @event = Event.find(params[:id])
-    end
+  def set_event
+    @event = Event.find(params[:id])
+  end
 
-    def set_room
-      @room = Room.find_by(params[:id])
-    end
+  def set_room
+    @room = Room.find_by(params[:id])
+  end
 
-    def event_params
-      params.require(:event).permit(:title, :start_date, :end_date, :color, :allday, :user_id, :room_id).merge(user_id: current_user.id, room_id: @room.id)
-    end
+  def event_params
+    params.require(:event).permit(:title, :start_date, :end_date, :color, :allday, :user_id, :room_id).merge(user_id: current_user.id, room_id: @room.id)
+  end
 end

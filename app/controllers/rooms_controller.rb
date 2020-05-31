@@ -2,7 +2,7 @@
 
 class RoomsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
-  # before_action :set_room, except: [:create]
+  before_action :set_room, only: [:show, ]
   before_action :move_to_index, except: [:index]
 
 
@@ -20,12 +20,12 @@ class RoomsController < ApplicationController
     # @direct_messages = @room.direct_messages
     # @anotherEntries = DirectMessage.where(room_id: myRoomIds)
     # @direct_messages = DirectMessage.where(room_id: myRoomIds)
-    # render template: "users/index"
+    render template: "users/index"
     # @room = Room.find(params[:id]) #ルーム情報の取得
   end
 
   def show
-    @room = Room.find(params[:id])
+    @room = Room.find_by(params[:id])
     # ルームが作成されているかどうか
     if Entry.where(user_id: current_user.id, room_id: @room.id).present?
       @direct_messages = @room.direct_messages #このルームのメッセージを全て取得
@@ -38,6 +38,7 @@ class RoomsController < ApplicationController
     end
 
     @events = Event.where(room_id: @room.id)
+    # render template: "events/index"
 
     # respond_to do |format|
     #   format.html # index.html.erb
@@ -46,6 +47,9 @@ class RoomsController < ApplicationController
     # end
     # render template: 'shared/_header'
     # render template: 'events/_index'
+    # render template: 'events/index'
+    # redirect_to action: :show 
+
   end
 
   def create
@@ -54,7 +58,10 @@ class RoomsController < ApplicationController
     @entry1 = Entry.create(room_id: @room.id, user_id: current_user.id)
     # entryにparamsユーザーを作成
     @entry2 = Entry.create(params.require(:entry).permit(:user_id, :room_id).merge(room_id: @room.id))
-    redirect_to room_path(@room.id)
+    # redirect_to room_path(@room.id)
+
+    # render template: 'events/index'
+    # redirect_to action: :show 
   end
 
   def destroy
@@ -66,9 +73,9 @@ class RoomsController < ApplicationController
 
 
   private
-  # def set_room
-  #   @room = Room.find(params[:id])
-  # end
+  def set_room
+    @room = Room.find_by(params[:id])
+  end
 
   def move_to_index
     redirect_to action: :index unless user_signed_in?
