@@ -1,5 +1,5 @@
 <%= render './shared/header' %>
-<%= render './events/index', locals: { room_id: @room.id } %>
+<%= render 'events/index', locals: { room_id: @room.id } %>
 
 <div class='chatbar'>
   <h1><%= @room.name %></h1>

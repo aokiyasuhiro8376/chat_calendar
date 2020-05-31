@@ -8,4 +8,6 @@ Rails.application.routes.draw do
   # , only: [:index, :show]
   resources :events
   # , only: [:index, :new, :show, :edit]
+
+  get '/rooms/:id', to: 'rooms#show'
 end

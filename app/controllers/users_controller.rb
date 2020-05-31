@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
-    render template: 'users/_index'
+    # render template: 'users/_index'
     # .where.not(id: current_user)
   end
 

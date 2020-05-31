@@ -44,7 +44,8 @@ class RoomsController < ApplicationController
     #   format.xml { render xml: @events }
     #   format.json { render json: @events }
     # end
-    render template: 'events/index'
+    # render template: 'shared/_header'
+    # render template: 'events/_index'
   end
 
   def create
