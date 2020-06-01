@@ -129,7 +129,7 @@
 
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy] #パラメータのidからレコードを特定するメソッド
-  before_action :set_room, only: [:index, :create, :update] #パラメータのidからレコードを特定するメソッド
+  before_action :set_room, only: [:index, :create, :update, :destroy] #パラメータのidからレコードを特定するメソッド
 
   def index
     # @events = Event.all
