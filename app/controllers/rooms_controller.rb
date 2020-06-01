@@ -38,7 +38,7 @@ class RoomsController < ApplicationController
     end
 
     @events = Event.where(room_id: @room.id)
-    render template: 'events/index'
+    # render template: 'events/index'
 
     # respond_to do |format|
     #   format.html # index.html.erb
