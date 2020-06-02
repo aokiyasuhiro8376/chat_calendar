@@ -1,7 +1,7 @@
 <%# <%= render 'shared/header' %> 
+<h1>予定を共有しよう！</h1>
 <h3>ユーザ一覧</h3>
-<h3>チャットする友達をお選びください</h3>
-
+<h3>共有する友達をお選びください</h3>
 
 <% @users.each do |user| %>
   <%= link_to "ユーザ名:#{user.name}", user_path(user.id), class: 'user_link' %>

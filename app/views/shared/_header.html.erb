@@ -9,6 +9,7 @@
         <%= current_user.name %><br>
         <%= current_user.email %><br>
       </div>
+        <%= link_to 'プロフ変更', edit_user_registration_path, class: 'sign_btn' %>
         <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'sign_btn' %>
       <% else %>
         <%= link_to "新規登録", new_user_registration_path, class: 'sign_btn' %>

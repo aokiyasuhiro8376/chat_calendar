@@ -2,9 +2,30 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.welcome {
-  text-align: center;
+// room.index
+.main {
+  display: flex;
+  .leftmain {
+    width: 60%;
+    font-size: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .welcome {
+      text-align: center;
+      margin: 24px;
+    }
+  }
+  .rigtmain {
+    width: 40%;
+    .subbar {
+      text-align: center;
+      margin: 32px;
+    }
+    // display: flex;
+  }
 }
+
 
 .chatbar {
   width: 35%;
@@ -36,7 +57,7 @@ h6 {
 table {
   tr {
     td {
-      width: 30%;
+      width: 25%;
       a {
         font-size: 14px;
         font-weight: bold;

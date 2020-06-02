@@ -1,7 +1,15 @@
 <%= render 'shared/header' %>
-<%= render 'shared/welcom' %>
+<div class='main'>
+  <div class='leftmain'>
+    <%= render 'shared/welcom' %>
+  </div>
 
-<% if user_signed_in? %>
-  <%= render template: 'users/index' %>
-  <%# <%= render 'users/show' %> 
-<% end %>
+  <div class='rigtmain'>
+    <% if user_signed_in? %>
+      <%= render template: 'users/index' %>
+      <% else %>
+      <%= render 'shared/subbar'%>
+      <%# <%= render 'users/show' %> 
+    <% end %>
+  </div>
+</div>
