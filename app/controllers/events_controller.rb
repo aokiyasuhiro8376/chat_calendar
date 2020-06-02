@@ -26,68 +26,65 @@
 #   end
 # end
 
-# class EventsController < ApplicationController
-#   before_action :authenticate_user!, except: [:index]
-#   before_action :set_event, only: %i[update destroy] # パラメータのidからレコードを特定するメソッド
-#   # before_action :set_room, only: %i[index update destroy] # パラメータのidからレコードを特定するメソッド
 
+
+
+
+
+
+# class EventsController < ApplicationController
+#   before_action :set_event, only: [:show, :edit, :update, :destroy] #パラメータのidからレコードを特定するメソッド
+#   before_action :set_room, only: [:index, :create, :update, :destroy] #パラメータのidからレコードを特定するメソッド
 
 #   def index
-#     # @user = User.find_by(params[:id])
-#     # @room = Room.find_by(params[:id]) #ルーム情報の取得
-
-#     # @events = Event.find(room_id: @room.id == current_user.@room.id)
-
-#     respond_to do |format|
-#       format.html # index.html.erb
-#       format.xml { render xml: @events }
-#       format.json { render json: @events }
-#     end
-
-#     render template: 'events/_index'
-#     # render template: './rooms/show'
-
+#     @events = Event.where(room_id: @room.id)
 #   end
 
 #   def show
-#     @event = Event.find(params[:id])
 #   end
 
 #   def new
 #     @event = Event.new
-#     @user = User.find_by(params[:id])
-#     @room = Room.find_by(params[:id]) #ルーム情報の取得
-#     # render template: 'events/_new'
-
 #   end
 
 #   def edit
-#     @event = Event.find_by(params[:id])
 #   end
 
 #   def create
 #     @event = Event.new(event_params)
-#     @event.save!
-#     @events = Event.where(user_id: current_user.id)
+#     if @event.save
+#       # redirect_to template: 'rooms/show'
+#       redirect_to room_path(@room.id)
+#       # redirect_to action: :show 
+#       # redirect_to '/rooms/:id'
+#     else
+#       redirect_to new_event_path
 
-#     @user = User.find_by(params[:id])
-#     @room = Room.find(params[:id]) #ルーム情報の取得
-#     respond_to do |format|
-#       if @event.save
-#         format.html { redirect_to room_path(@room.id) }
-#           # redirect_to @event, notice: 'Event was successfully created.' }
-#         format.json { render :show, status: :created, location: @event }
-#       else
-#         format.html { render :new }
-#         format.json { render json: @event.errors, status: :unprocessable_entity }
-#       end
+
+#     # respond_to do |format|
+#     #   if @event.save
+#         # redirect_to action: :show 
+#         # redirect_to '/rooms/:id'
+#         # redirect_to room_path(@room.id)
+
+#         # redirect_to template: 'rooms/show' and return 
+
+
+
+#       #   format.html { redirect_to template: 'rooms/show', location: @event }
+#       #   format.json { render :show, status: :created, location: @event }
+#       # else
+#       #   format.html { render :new }
+#       #   format.json { render json: @event.errors, status: :unprocessable_entity }
+#       # end
 #     end
 #   end
 
 #   def update
 #     respond_to do |format|
 #       if @event.update(event_params)
-#         format.html { redirect_to @event, notice: 'Event was successfully updated.' }
+#         format.html { redirect_to room_path(@room.id), location: @event }
+#           # template: 'rooms/show', location: @event }
 #         format.json { render :show, status: :ok, location: @event }
 #       else
 #         format.html { render :edit }
@@ -99,7 +96,8 @@
 #   def destroy
 #     @event.destroy
 #     respond_to do |format|
-#       format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
+#       format.html { redirect_to room_path(@room.id), location: @event }
+#       # events_url, notice: 'Event was successfully destroyed.' }
 #       format.json { head :no_content }
 #     end
 #   end
@@ -109,16 +107,12 @@
 #     @event = Event.find(params[:id])
 #   end
 
-#   # def set_room
-#   #   @room = Room.find(params[:id])
-#   # end
-
-#   # def set_current_user
-#   #   @current_user = User.find(params[:id])
-#   # end
+#   def set_room
+#     @room = Room.find_by(params[:id])
+#   end
 
 #   def event_params
-#     params.require(:event).permit(:title, :start_date, :end_date, :user_id, :room_id).meage(user_id: current_user.id, room_id: @room.id)
+#     params.require(:event).permit(:title, :start_date, :end_date, :color, :allday, :user_id, :room_id).merge(user_id: current_user.id, room_id: @room.id)
 #   end
 # end
 
@@ -127,65 +121,52 @@
 
 
 
-class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update, :destroy] #パラメータのidからレコードを特定するメソッド
-  before_action :set_room, only: [:index, :create, :update, :destroy] #パラメータのidからレコードを特定するメソッド
 
+class EventsController < ApplicationController
+  before_action :set_event, only: %i[show edit update destroy]
+  before_action :set_room, only: %i[index create update destroy]
+
+  # GET /events
+  # GET /events.json
   def index
     # @events = Event.all
-
     @events = Event.where(room_id: @room.id)
-
-
-    # respond_to do |format|
-    #   format.html # index.html.erb
-    #   format.xml { render :xml => @events }
-    #   format.json { render :json => @events }
-    # end
   end
 
-  def show
-  end
+  # GET /events/1
+  # GET /events/1.json
+  def show; end
 
+  # GET /events/new
   def new
     @event = Event.new
   end
 
-  def edit
-  end
+  # GET /events/1/edit
+  def edit; end
 
+  # POST /events
+  # POST /events.json
   def create
     @event = Event.new(event_params)
-    if @event.save
-      redirect_to room_path(@room.id)
-    else
-      redirect_to new_event_path
 
-
-    # respond_to do |format|
-    #   if @event.save
-        # redirect_to action: :show 
-        # redirect_to '/rooms/:id'
-        # redirect_to room_path(@room.id)
-
-        # redirect_to template: 'rooms/show' and return 
-
-
-
-      #   format.html { redirect_to template: 'rooms/show', location: @event }
-      #   format.json { render :show, status: :created, location: @event }
-      # else
-      #   format.html { render :new }
-      #   format.json { render json: @event.errors, status: :unprocessable_entity }
-      # end
+    respond_to do |format|
+      if @event.save
+        format.html { redirect_to @event, notice: 'Event was successfully created.' }
+        format.json { render :show, status: :created, location: @event }
+      else
+        format.html { render :new }
+        format.json { render json: @event.errors, status: :unprocessable_entity }
+      end
     end
   end
 
+  # PATCH/PUT /events/1
+  # PATCH/PUT /events/1.json
   def update
     respond_to do |format|
       if @event.update(event_params)
-        format.html { redirect_to room_path(@room.id), location: @event }
-          # template: 'rooms/show', location: @event }
+        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
         format.json { render :show, status: :ok, location: @event }
       else
         format.html { render :edit }
@@ -194,16 +175,19 @@ class EventsController < ApplicationController
     end
   end
 
+  # DELETE /events/1
+  # DELETE /events/1.json
   def destroy
     @event.destroy
     respond_to do |format|
-      format.html { redirect_to room_path(@room.id), location: @event }
-      # events_url, notice: 'Event was successfully destroyed.' }
+      format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
+
+  # Use callbacks to share common setup or constraints between actions.
   def set_event
     @event = Event.find(params[:id])
   end
@@ -212,6 +196,7 @@ class EventsController < ApplicationController
     @room = Room.find_by(params[:id])
   end
 
+  # Only allow a list of trusted parameters through.
   def event_params
     params.require(:event).permit(:title, :start_date, :end_date, :color, :allday, :user_id, :room_id).merge(user_id: current_user.id, room_id: @room.id)
   end

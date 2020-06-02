@@ -2,7 +2,8 @@
 
 class RoomsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
-  before_action :set_room, only: [:show, ]
+  # before_action :set_room, only: [:show]
+  before_action :set_event, only: [:show, :edit, :update, :destroy] #パラメータのidからレコードを特定するメソッド
   before_action :move_to_index, except: [:index]
 
 
@@ -25,6 +26,7 @@ class RoomsController < ApplicationController
   end
 
   def show
+    # RoomsController
     @room = Room.find_by(params[:id])
     # ルームが作成されているかどうか
     if Entry.where(user_id: current_user.id, room_id: @room.id).present?
@@ -37,7 +39,35 @@ class RoomsController < ApplicationController
       redirect_back(fallback_location: root_path)
     end
 
-    @events = Event.where(room_id: @room.id)
+    # # UsersController
+    # @user = User.find(params[:id])
+    # # チャット
+    # # if user_signed_in?
+    # # Entry内のuser_idがcurrent_userと同じEntry
+    # @currentUserEntry = Entry.where(user_id: current_user.id)
+    # # Entry内のuser_idがMYPAGEのparams.idと同じEntry
+    # @userEntry = Entry.where(user_id: @user.id)
+    # # @user.idとcurrent_user.idが同じでなければ
+    # unless @user.id == current_user.id
+    #   @currentUserEntry.each do |cu|
+    #     @userEntry.each do |u|
+    #       # もしcurrent_user側のルームidと＠user側のルームidが同じであれば存在するルームに飛ぶ
+    #       if cu.room_id == u.room_id
+    #         @isRoom = true
+    #         @roomId = cu.room_id
+    #       end
+    #     end
+    #   end
+    #   # ルームが存在していなければルームとエントリーを作成する
+    #   unless @isRoom
+    #     @room = Room.new
+    #     @entry = Entry.new
+    #   end
+    # end
+
+    # EventsController
+    @events = @room.events #このルームのメッセージを全て取得
+    # @events = Event.where(room_id: @room.id)
     # render template: 'events/index'
 
     # respond_to do |format|
@@ -60,11 +90,18 @@ class RoomsController < ApplicationController
     @entry2 = Entry.create(params.require(:entry).permit(:user_id, :room_id).merge(room_id: @room.id))
     # redirect_to room_path(@room.id)
 
+    # EventsController
     @event = Event.new(event_params)
     if @event.save
+      # redirect_to template: 'events/index'
+      # redirect_to template: 'rooms/show' and return
       redirect_to room_path(@room.id)
+      # redirect_to action: :show 
+      # redirect_to '/rooms/:id'
+
     else
-      redirect_to new_event_path
+      redirect_to action: :show 
+
 
 
     # respond_to do |format|
@@ -95,12 +132,24 @@ class RoomsController < ApplicationController
     room = Room.find_by(params[:id])
     room.destroy
     redirect_to users_rooms_path
+
+    # EventsController
+    @event.destroy
+    respond_to do |format|
+      format.html { redirect_to room_path(@room.id), location: @event }
+      # events_url, notice: 'Event was successfully destroyed.' }
+      format.json { head :no_content }
+    end
   end
 
 
   private
-  def set_room
-    @room = Room.find_by(params[:id])
+  # def set_room
+  #   @room = Room.find_by(params[:id])
+  # end
+
+  def set_event
+    @event = Event.find_by(params[:id])
   end
 
   def event_params
