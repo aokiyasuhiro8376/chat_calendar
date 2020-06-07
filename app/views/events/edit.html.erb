@@ -2,5 +2,6 @@
 
 <%= render 'form', event: @event %>
 
-<%= link_to '表示', @event, class: 'action-btn' %> |
-<%= link_to '戻る', room_path(), class: 'action-btn' %>
+<%= link_to '表示', @event, class: 'action-btn' %> 
+<%= link_to '戻る', room_path(@event.room_id), class: 'action-btn' %>
+

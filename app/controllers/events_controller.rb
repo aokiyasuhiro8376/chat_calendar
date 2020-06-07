@@ -124,7 +124,7 @@
 
 class EventsController < ApplicationController
   before_action :set_event, only: %i[show edit update destroy]
-  before_action :set_room, only: %i[index create show edit update destroy]
+  before_action :set_room, only: %i[index new create show edit update destroy]
 
   # GET /events
   # GET /events.json
