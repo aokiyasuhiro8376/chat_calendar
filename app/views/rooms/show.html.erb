@@ -1,10 +1,4 @@
-<%# <%= render 'shared/header' %> 
-<%# <%= render partial: 'events/index', locals: { @events,@room } %> 
-<%# <%= render template: 'events/index', locals: { event: @events, room_id: @room.id } %>
-<%# <%= render template: 'events/index', locals: { @events,@roome } %> 
-<%= render template: 'events/index', locals: { event: @event } %>
-
-
+<%= render template: 'events/index' %>
 
 <div class='chatbar'>
   <h1><%= @room.name %></h1>
