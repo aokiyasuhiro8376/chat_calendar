@@ -69,11 +69,11 @@ class EventsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_event
-    @event = Event.find_by(params[:id])
+    @event = Event.find(params[:id])
   end
 
   def set_room
-    @room = Room.find_by(params[:id])
+    @room = Room.find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.

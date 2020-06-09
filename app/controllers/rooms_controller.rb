@@ -2,7 +2,7 @@
 
 class RoomsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
-  before_action :set_room, only: [:index, :new, :show, :edit]
+  before_action :set_room, only: [:index, :new, :edit]
   before_action :set_event, only: [:show, :edit, :update, :destroy] #パラメータのidからレコードを特定するメソッド
   before_action :move_to_index, except: [:index]
 
@@ -13,7 +13,7 @@ class RoomsController < ApplicationController
 
   def show
     # RoomsController
-    # @room = Room.find(params[:id])
+    @room = Room.find(params[:id])
     # ルームが作成されているかどうか
     if Entry.where(user_id: current_user.id, room_id: @room.id).present?
       @direct_messages = @room.direct_messages #このルームのメッセージを全て取得
@@ -42,7 +42,7 @@ class RoomsController < ApplicationController
     @event = Event.new(event_params)
       respond_to do |format|
       if @event.save
-      #   redirect_to template: 'rooms/show' and return
+        # redirect_to template: 'rooms/show' and return
       # else
       #   redirect_to action: :show 
           format.html { redirect_to template: 'rooms/show', location: @event }
